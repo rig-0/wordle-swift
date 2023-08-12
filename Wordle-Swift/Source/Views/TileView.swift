@@ -17,6 +17,9 @@ class TileView: UIView {
     }
     
     func setupView() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+
         self.layer.borderColor = UIColor.black.cgColor
         self.layer.borderWidth = 2
     }

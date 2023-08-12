@@ -1,8 +1,6 @@
 //
 //  SceneDelegate.swift
-//  Wordle-Swift
-//
-//  Created by RIGO CARBAJAL on 8/11/23.
+//  ©️ 2023 0100
 //
 
 import UIKit
