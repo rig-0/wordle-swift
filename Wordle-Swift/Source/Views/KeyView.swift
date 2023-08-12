@@ -1,11 +1,11 @@
 //
-//  TileView.swift
+//  KeyView.swift
 //  ©️ 2023 0100
 //
 
 import UIKit
 
-class TileView: UIView {
+class KeyView: UIView {
 
     var key: Key? {
         didSet {
@@ -27,14 +27,14 @@ class TileView: UIView {
     
     private func setupView() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3).isActive = true
 
-        self.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
-        self.layer.borderWidth = 2
+        self.backgroundColor = UIColor.App.keyStateEmpty
+        self.layer.cornerRadius = 3
         
         let labelView = UILabel()
         labelView.textColor = .black
-        labelView.font = UIFont(name: "HelveticaNeue-Bold", size: 40)
+        labelView.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         labelView.textAlignment = .center
         self.addSubview(labelView)
         labelView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +47,7 @@ class TileView: UIView {
     
     private func update() {
         self.labelView.text = self.key?.rawValue
-        self.layer.borderColor = UIColor.App.keyStateTbd.cgColor
     }
 }
+
 

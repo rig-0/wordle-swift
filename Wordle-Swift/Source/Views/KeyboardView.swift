@@ -1,14 +1,18 @@
 //
-//  GridView.swift
+//  KeyboardView.swift
 //  ©️ 2023 0100
 //
 
 import UIKit
 
-class GridView: UIView {
+class KeyboardView: UIView {
     
-    let kNumberOfAttempts = 6
-    let kCharactersPerAttempt = 5
+    let rows: [[Key]] =
+    [
+        [.Q, .W, .E, .R, .T, .Y, .U, .I, .O, .P ],
+        [.A, .S, .D, .F, .G, .H, .J, .K, .L],
+        [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
+    ]
     
     init() {
         super.init(frame: .zero)
@@ -32,22 +36,18 @@ class GridView: UIView {
         gridView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         gridView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
-        // Number of attempts
-        for _ in 0 ..< self.kNumberOfAttempts {
-            
+        // Number of rows
+        for i in 0 ..< self.rows.count {
+
             let tileRow = UIStackView()
             tileRow.axis = .horizontal
-            tileRow.spacing = 5
+            tileRow.spacing = 3
             gridView.addArrangedSubview(tileRow)
-            
-            // Number of characters per attempt
-            for _ in 0 ..< self.kCharactersPerAttempt {
-                let tile = TileView()
+
+            // Add KeyView for each key in row
+            for key in self.rows[i] {
+                let tile = KeyView(key: key)
                 tileRow.addArrangedSubview(tile)
-                
-                if Int.random(in: 1...2) == 1 {
-                    tile.key = .X
-                }
             }
         }
     }
