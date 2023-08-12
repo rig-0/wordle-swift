@@ -1,0 +1,39 @@
+{
+  "configurations" : [
+    {
+      "id" : "15121E45-BAC5-4A18-A363-D856C55DC77D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Wordle-Swift.xcodeproj",
+      "identifier" : "C780186C2A870E0A00E59E0D",
+      "name" : "Wordle-Swift"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Wordle-Swift.xcodeproj",
+        "identifier" : "C78018822A870E0B00E59E0D",
+        "name" : "Wordle-SwiftTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Wordle-Swift.xcodeproj",
+        "identifier" : "C780188C2A870E0B00E59E0D",
+        "name" : "Wordle-SwiftUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
