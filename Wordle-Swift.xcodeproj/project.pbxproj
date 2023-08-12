@@ -11,6 +11,8 @@
 		C72776472A8715E700BA1ED4 /* KeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776462A8715E700BA1ED4 /* KeyTests.swift */; };
 		C727764A2A8731BF00BA1ED4 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776492A8731BF00BA1ED4 /* TileView.swift */; };
 		C727764D2A8735F100BA1ED4 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727764C2A8735F100BA1ED4 /* GridView.swift */; };
+		C727764F2A88149B00BA1ED4 /* KeyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727764E2A88149B00BA1ED4 /* KeyState.swift */; };
+		C72776522A88384000BA1ED4 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776512A88384000BA1ED4 /* UIColor+AppColors.swift */; };
 		C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018702A870E0A00E59E0D /* AppDelegate.swift */; };
 		C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018722A870E0A00E59E0D /* SceneDelegate.swift */; };
 		C78018752A870E0A00E59E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018742A870E0A00E59E0D /* ViewController.swift */; };
@@ -44,6 +46,8 @@
 		C72776482A872B7500BA1ED4 /* Wordle-Swift.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Wordle-Swift.xctestplan"; sourceTree = "<group>"; };
 		C72776492A8731BF00BA1ED4 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		C727764C2A8735F100BA1ED4 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		C727764E2A88149B00BA1ED4 /* KeyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyState.swift; sourceTree = "<group>"; };
+		C72776512A88384000BA1ED4 /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		C780186D2A870E0A00E59E0D /* Wordle-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordle-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018702A870E0A00E59E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C78018722A870E0A00E59E0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		C72776412A87140B00BA1ED4 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				C72776502A88382F00BA1ED4 /* Extensions */,
 				C727764B2A8731C300BA1ED4 /* Views */,
 				C72776422A8714E600BA1ED4 /* Models */,
 			);
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				C72776432A8714F900BA1ED4 /* Key.swift */,
+				C727764E2A88149B00BA1ED4 /* KeyState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -115,6 +121,14 @@
 				C727764C2A8735F100BA1ED4 /* GridView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C72776502A88382F00BA1ED4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C72776512A88384000BA1ED4 /* UIColor+AppColors.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		C78018642A870E0A00E59E0D = {
@@ -303,8 +317,10 @@
 			files = (
 				C78018752A870E0A00E59E0D /* ViewController.swift in Sources */,
 				C72776442A8714F900BA1ED4 /* Key.swift in Sources */,
+				C727764F2A88149B00BA1ED4 /* KeyState.swift in Sources */,
 				C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */,
 				C727764A2A8731BF00BA1ED4 /* TileView.swift in Sources */,
+				C72776522A88384000BA1ED4 /* UIColor+AppColors.swift in Sources */,
 				C727764D2A8735F100BA1ED4 /* GridView.swift in Sources */,
 				C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */,
 			);
