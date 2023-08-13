@@ -7,7 +7,8 @@ import UIKit
 
 extension UIFont {
     struct App {
-        static var keyFont: UIFont { UIFont(name: "HelveticaNeue-Bold", size: 20)! }
+        static var keyEnterFont: UIFont { UIFont(name: "HelveticaNeue-Bold", size: 10)! }
+        static var keyStandardFont: UIFont { UIFont(name: "HelveticaNeue-Bold", size: 20)! }
         static var tileFont: UIFont { UIFont(name: "HelveticaNeue-Bold", size: 40)! }
     }
 }

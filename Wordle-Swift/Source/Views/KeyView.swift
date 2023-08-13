@@ -7,34 +7,34 @@ import UIKit
 
 class KeyView: UIView {
 
-    var key: Key? {
-        didSet {
-            self.update()
-        }
-    }
-    
+    private var key: Key?
     private var labelView: UILabel!
+    private var widthConstraint: NSLayoutConstraint!
+    private var heightConstraint: NSLayoutConstraint!
     
     init(key: Key? = nil) {
-        super.init(frame: .zero)
         self.key = key
+        super.init(frame: .zero)
         self.setupView()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupView() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.4).isActive = true
-
+        self.widthConstraint = self.widthAnchor.constraint(equalToConstant: 50)
+        self.heightConstraint = self.heightAnchor.constraint(equalToConstant: 50)
+        self.widthConstraint.isActive = true
+        self.heightConstraint.isActive = true
+        
         self.backgroundColor = UIColor.App.keyStateEmpty
         self.layer.cornerRadius = 3
         
         let labelView = UILabel()
         labelView.textColor = .black
-        labelView.font = UIFont.App.keyFont
+        labelView.font = UIFont.App.keyStandardFont
         labelView.textAlignment = .center
         self.addSubview(labelView)
         labelView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,6 +46,49 @@ class KeyView: UIView {
     }
     
     private func update() {
-        self.labelView.text = self.key?.rawValue
+        self.labelView.attributedText = self.textForKey(self.key)
+        self.backgroundColor = self.backgroundColorForKey(self.key)
+    }
+    
+    private func textForKey(_ : Key?) -> NSAttributedString? {
+        switch self.key {
+        case .__:
+            return nil
+        case .ENTER:
+            let myAttribute = [ NSAttributedString.Key.font: UIFont.App.keyEnterFont ]
+            return NSAttributedString(string: "ENTER", attributes: myAttribute)
+        case .DELETE:
+            let attachment = NSTextAttachment()
+            let deleteImage = UIImage(named: "Key_DELETE")!
+            attachment.image = deleteImage
+            attachment.bounds = CGRect(x: 0, y: -2, width: deleteImage.size.width, height: deleteImage.size.height)
+            return NSAttributedString(attachment: attachment)
+        default:
+            let myAttribute = [ NSAttributedString.Key.font: UIFont.App.keyStandardFont ]
+            return NSAttributedString(string: self.key?.rawValue ?? "", attributes: myAttribute)
+        }
+    }
+    
+    private func backgroundColorForKey(_ : Key?) -> UIColor {
+        switch self.key {
+        case .__:
+            return .clear
+        default:
+            return UIColor.App.keyStateEmpty
+        }
+    }
+    
+    public func updateKeySizeWithStandardWidth(_ width: CGFloat) {
+        switch self.key {
+        case .__:
+            self.widthConstraint.constant = width * 0.35
+            self.heightConstraint.constant = width * 1.4
+        case .ENTER, .DELETE:
+            self.widthConstraint.constant = width * 1.5
+            self.heightConstraint.constant = width * 1.4
+        default:
+            self.widthConstraint.constant = width
+            self.heightConstraint.constant = width * 1.4
+        }
     }
 }

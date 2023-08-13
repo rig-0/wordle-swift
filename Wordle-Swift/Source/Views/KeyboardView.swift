@@ -10,9 +10,13 @@ class KeyboardView: UIView {
     let rows: [[Key]] =
     [
         [.Q, .W, .E, .R, .T, .Y, .U, .I, .O, .P ],
-        [.A, .S, .D, .F, .G, .H, .J, .K, .L],
+        [.__, .A, .S, .D, .F, .G, .H, .J, .K, .L, .__],
         [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
     ]
+    
+    let kSpacingBetweenKeys = 5
+    
+    var keyViews: [KeyView] = []
     
     init() {
         super.init(frame: .zero)
@@ -21,6 +25,19 @@ class KeyboardView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Determine standard key size, assume first row is all standard characters
+        let keysPerRow = rows.first?.count ?? 0
+        let availableWidth: CGFloat = self.frame.width
+        let widthWithouthSpacing = availableWidth - CGFloat(kSpacingBetweenKeys * (keysPerRow - 1))
+        let standardKeyWidth = widthWithouthSpacing / CGFloat(keysPerRow)
+        self.keyViews.forEach { $0.updateKeySizeWithStandardWidth(standardKeyWidth) }
+
+        print(standardKeyWidth)
     }
     
     func setupView() {
@@ -39,15 +56,20 @@ class KeyboardView: UIView {
         // Number of rows
         for i in 0 ..< self.rows.count {
 
-            let tileRow = UIStackView()
-            tileRow.axis = .horizontal
-            tileRow.spacing = 5
-            gridView.addArrangedSubview(tileRow)
+            let rowView = UIStackView()
+            rowView.axis = .horizontal
+            rowView.spacing = CGFloat(self.kSpacingBetweenKeys)
+            gridView.addArrangedSubview(rowView)
+//            rowView.translatesAutoresizingMaskIntoConstraints = false
+//            rowView.centerXAnchor.constraint(equalTo: gridView.centerXAnchor).isActive = true
+//            rowView.leadingAnchor.constraint(greaterThanOrEqualTo: gridView.leadingAnchor).isActive = true
+//            rowView.trailingAnchor.constraint(greaterThanOrEqualTo: gridView.trailingAnchor).isActive = true
 
             // Add KeyView for each key in row
             for key in self.rows[i] {
                 let keyView = KeyView(key: key)
-                tileRow.addArrangedSubview(keyView)
+                rowView.addArrangedSubview(keyView)
+                keyViews.append(keyView)
             }
         }
     }
