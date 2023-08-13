@@ -55,15 +55,10 @@ class KeyboardView: UIView {
         
         // Number of rows
         for i in 0 ..< self.rows.count {
-
             let rowView = UIStackView()
             rowView.axis = .horizontal
             rowView.spacing = CGFloat(self.kSpacingBetweenKeys)
             gridView.addArrangedSubview(rowView)
-//            rowView.translatesAutoresizingMaskIntoConstraints = false
-//            rowView.centerXAnchor.constraint(equalTo: gridView.centerXAnchor).isActive = true
-//            rowView.leadingAnchor.constraint(greaterThanOrEqualTo: gridView.leadingAnchor).isActive = true
-//            rowView.trailingAnchor.constraint(greaterThanOrEqualTo: gridView.trailingAnchor).isActive = true
 
             // Add KeyView for each key in row
             for key in self.rows[i] {

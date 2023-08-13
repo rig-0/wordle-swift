@@ -42,7 +42,15 @@ class KeyView: UIView {
         labelView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.labelView = labelView
         
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.addTarget(self, action: #selector(didTapKey))
+        self.addGestureRecognizer(tapGesture)
+        
         update()
+    }
+    
+    @objc private func didTapKey() {
+        print(self.key?.rawValue ?? "")
     }
     
     private func update() {
