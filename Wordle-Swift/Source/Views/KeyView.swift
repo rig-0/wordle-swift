@@ -27,14 +27,14 @@ class KeyView: UIView {
     
     private func setupView() {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.3).isActive = true
+        self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1.4).isActive = true
 
         self.backgroundColor = UIColor.App.keyStateEmpty
         self.layer.cornerRadius = 3
         
         let labelView = UILabel()
         labelView.textColor = .black
-        labelView.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+        labelView.font = UIFont.App.keyFont
         labelView.textAlignment = .center
         self.addSubview(labelView)
         labelView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,5 +49,3 @@ class KeyView: UIView {
         self.labelView.text = self.key?.rawValue
     }
 }
-
-

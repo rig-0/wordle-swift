@@ -42,11 +42,11 @@ class GridView: UIView {
             
             // Number of characters per attempt
             for _ in 0 ..< self.kCharactersPerAttempt {
-                let tile = TileView()
-                tileRow.addArrangedSubview(tile)
+                let tileView = TileView()
+                tileRow.addArrangedSubview(tileView)
                 
                 if Int.random(in: 1...2) == 1 {
-                    tile.key = .X
+                    tileView.key = .X
                 }
             }
         }

@@ -41,13 +41,13 @@ class KeyboardView: UIView {
 
             let tileRow = UIStackView()
             tileRow.axis = .horizontal
-            tileRow.spacing = 3
+            tileRow.spacing = 5
             gridView.addArrangedSubview(tileRow)
 
             // Add KeyView for each key in row
             for key in self.rows[i] {
-                let tile = KeyView(key: key)
-                tileRow.addArrangedSubview(tile)
+                let keyView = KeyView(key: key)
+                tileRow.addArrangedSubview(keyView)
             }
         }
     }

@@ -34,7 +34,7 @@ class TileView: UIView {
         
         let labelView = UILabel()
         labelView.textColor = .black
-        labelView.font = UIFont(name: "HelveticaNeue-Bold", size: 40)
+        labelView.font = UIFont.App.tileFont
         labelView.textAlignment = .center
         self.addSubview(labelView)
         labelView.translatesAutoresizingMaskIntoConstraints = false
