@@ -13,7 +13,7 @@ class KeyboardView: UIView {
         [.__, .A, .S, .D, .F, .G, .H, .J, .K, .L, .__],
         [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
     ]
-    
+        
     let kSpacingBetweenKeys = 5
     
     var keyViews: [KeyView] = []
@@ -36,8 +36,6 @@ class KeyboardView: UIView {
         let widthWithouthSpacing = availableWidth - CGFloat(kSpacingBetweenKeys * (keysPerRow - 1))
         let standardKeyWidth = widthWithouthSpacing / CGFloat(keysPerRow)
         self.keyViews.forEach { $0.updateKeySizeWithStandardWidth(standardKeyWidth) }
-
-        print(standardKeyWidth)
     }
     
     func setupView() {

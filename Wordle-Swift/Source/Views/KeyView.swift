@@ -29,6 +29,11 @@ class KeyView: UIView {
         self.widthConstraint.isActive = true
         self.heightConstraint.isActive = true
         
+        // Setting lower priority on width allows for stackview to resize views
+        // properly before we set correct widths based on computed width.
+        // Preventing to set priority raises constraint warnings in console.
+        self.widthConstraint.priority = .defaultLow
+        
         self.backgroundColor = UIColor.App.keyStateEmpty
         self.layer.cornerRadius = 3
         
