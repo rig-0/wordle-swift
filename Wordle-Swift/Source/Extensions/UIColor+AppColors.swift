@@ -13,5 +13,8 @@ extension UIColor {
     struct App {
         static var keyStateEmpty: UIColor { UIColor(rgb: (212,214,218)) }
         static var keyStateTbd: UIColor { UIColor(rgb: (136,138,140)) }
+        static var keyStateCorrect: UIColor { UIColor(rgb: (121,168,107)) }
+        static var keyStatePresent: UIColor { UIColor(rgb: (197,181,102)) }
+        static var keyStateAbsent: UIColor { UIColor(rgb: (121,124,126)) }
     }
 }

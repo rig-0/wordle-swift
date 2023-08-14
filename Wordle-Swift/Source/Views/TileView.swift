@@ -64,13 +64,18 @@ class TileView: UIView {
         } else {
             self.layer.borderWidth = 0
             self.labelView.textColor = .white
-            if self.state == .correct {
-                self.backgroundColor = .green
-            } else if self.state == .absent {
-                self.backgroundColor = .red
-            } else if self.state == .present {
-                self.backgroundColor = .yellow
-            }
+            self.backgroundColor = backgroundColorForState(self.state)
+        }
+    }
+    
+    private func backgroundColorForState(_ state : KeyState) -> UIColor {
+        switch state {
+        case .correct:
+            return UIColor.App.keyStateCorrect
+        case .present:
+            return UIColor.App.keyStatePresent
+        default:
+            return UIColor.App.keyStateAbsent
         }
     }
 }
