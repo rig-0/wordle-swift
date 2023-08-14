@@ -7,7 +7,8 @@ import UIKit
 
 enum GameState {
     case playing
-    case complete
+    case win
+    case lose
 }
 
 class GridView: UIView {
@@ -18,6 +19,8 @@ class GridView: UIView {
     var tileViews: [[TileView]] = []
     var activeAttempt = 0
     var gameState: GameState = .playing
+    
+    let correctWord = "AAAAA"
     
     init() {
         super.init(frame: .zero)
@@ -76,9 +79,16 @@ class GridView: UIView {
         else if key == .ENTER {
             let lastTile = self.tileViews[self.activeAttempt].last
             if lastTile?.key != nil {
-                self.activeAttempt += 1
-                if self.activeAttempt == self.kNumberOfAttempts {
-                    self.gameState = .complete
+                
+                if isAttemptCorrect() {
+                    print("WIN")
+                    self.gameState = .win
+                } else {
+                    self.activeAttempt += 1
+                    if self.activeAttempt == self.kNumberOfAttempts {
+                        print("LOSE")
+                        self.gameState = .lose
+                    }
                 }
             }
         }
@@ -90,5 +100,10 @@ class GridView: UIView {
                 }
             }
         }
+    }
+    
+    private func isAttemptCorrect() -> Bool {
+        let attemptWord = self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
+        return attemptWord == self.correctWord
     }
 }

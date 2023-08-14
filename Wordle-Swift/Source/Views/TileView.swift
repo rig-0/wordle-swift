@@ -47,7 +47,7 @@ class TileView: UIView {
     
     private func update() {
         self.labelView.text = self.key?.rawValue
-        if let key = self.key {
+        if let _ = self.key {
             self.layer.borderColor = UIColor.App.keyStateTbd.cgColor
         } else {
             self.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
