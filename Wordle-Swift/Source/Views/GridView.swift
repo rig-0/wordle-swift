@@ -5,10 +5,19 @@
 
 import UIKit
 
+enum GameState {
+    case playing
+    case complete
+}
+
 class GridView: UIView {
     
     let kNumberOfAttempts = 6
     let kCharactersPerAttempt = 5
+    
+    var tileViews: [[TileView]] = []
+    var activeAttempt = 0
+    var gameState: GameState = .playing
     
     init() {
         super.init(frame: .zero)
@@ -40,16 +49,46 @@ class GridView: UIView {
             tileRow.spacing = 5
             gridView.addArrangedSubview(tileRow)
             
+            var tileViews: [TileView] = []
+            
             // Number of characters per attempt
             for _ in 0 ..< self.kCharactersPerAttempt {
                 let tileView = TileView()
                 tileRow.addArrangedSubview(tileView)
-                
-                if Int.random(in: 1...2) == 1 {
-                    tileView.key = .X
+                tileViews.append(tileView)
+            }
+            
+            self.tileViews.append(tileViews)
+        }
+    }
+    
+    public func input(key: Key) {
+        guard self.gameState == .playing else { return }
+        
+        if key == .DELETE {
+            for tile in self.tileViews[self.activeAttempt].reversed() {
+                if tile.key != nil {
+                    tile.key = nil
+                    return
+                }
+            }
+        }
+        else if key == .ENTER {
+            let lastTile = self.tileViews[self.activeAttempt].last
+            if lastTile?.key != nil {
+                self.activeAttempt += 1
+                if self.activeAttempt == self.kNumberOfAttempts {
+                    self.gameState = .complete
+                }
+            }
+        }
+        else {
+            for tile in self.tileViews[self.activeAttempt] {
+                if tile.key == nil {
+                    tile.key = key
+                    return
                 }
             }
         }
     }
-    
 }

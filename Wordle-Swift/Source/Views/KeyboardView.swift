@@ -5,7 +5,13 @@
 
 import UIKit
 
+protocol KeyboardViewDelegate: AnyObject {
+    func didSelect(key: Key)
+}
+
 class KeyboardView: UIView {
+    
+    public weak var delegate: KeyboardViewDelegate?
     
     let rows: [[Key]] =
     [
@@ -61,10 +67,16 @@ class KeyboardView: UIView {
             // Add KeyView for each key in row
             for key in self.rows[i] {
                 let keyView = KeyView(key: key)
+                keyView.delegate = self
                 rowView.addArrangedSubview(keyView)
                 keyViews.append(keyView)
             }
         }
     }
-    
+}
+
+extension KeyboardView: KeyViewDelegate {
+    func didSelect(key: Key) {
+        self.delegate?.didSelect(key: key)
+    }
 }

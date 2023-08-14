@@ -5,8 +5,14 @@
 
 import UIKit
 
+protocol KeyViewDelegate: AnyObject {
+    func didSelect(key: Key)
+}
+
 class KeyView: UIView {
 
+    public weak var delegate: KeyViewDelegate?
+    
     private var key: Key?
     private var labelView: UILabel!
     private var widthConstraint: NSLayoutConstraint!
@@ -55,7 +61,8 @@ class KeyView: UIView {
     }
     
     @objc private func didTapKey() {
-        print(self.key?.rawValue ?? "")
+        guard let key = self.key else { return }
+        self.delegate?.didSelect(key: key)
     }
     
     private func update() {
