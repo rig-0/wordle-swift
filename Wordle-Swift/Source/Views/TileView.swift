@@ -12,6 +12,11 @@ class TileView: UIView {
             self.update()
         }
     }
+    var state: KeyState = .tbd {
+        didSet {
+            self.update()
+        }
+    }
     
     private var labelView: UILabel!
     
@@ -47,10 +52,25 @@ class TileView: UIView {
     
     private func update() {
         self.labelView.text = self.key?.rawValue
-        if let _ = self.key {
-            self.layer.borderColor = UIColor.App.keyStateTbd.cgColor
+        
+        if self.state == .tbd {
+            self.layer.borderWidth = 2
+            self.labelView.textColor = .black
+            if let _ = self.key {
+                self.layer.borderColor = UIColor.App.keyStateTbd.cgColor
+            } else {
+                self.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
+            }
         } else {
-            self.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
+            self.layer.borderWidth = 0
+            self.labelView.textColor = .white
+            if self.state == .correct {
+                self.backgroundColor = .green
+            } else if self.state == .absent {
+                self.backgroundColor = .red
+            } else if self.state == .present {
+                self.backgroundColor = .yellow
+            }
         }
     }
 }
