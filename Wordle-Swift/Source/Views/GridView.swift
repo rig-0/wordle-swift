@@ -5,13 +5,13 @@
 
 import UIKit
 
-enum GameState {
-    case playing
-    case win
-    case lose
+protocol GridViewDelegate: AnyObject {
+    func didCompleteAttempt(tileViews: [[TileView]])
 }
 
 class GridView: UIView {
+    
+    public weak var delegate: GridViewDelegate?
     
     let kNumberOfAttempts = 6
     let kCharactersPerAttempt = 5
@@ -84,6 +84,8 @@ class GridView: UIView {
                 for i in 0 ..< self.tileViews[self.activeAttempt].count {
                     self.tileViews[self.activeAttempt][i].state = tileStates[i]
                 }
+                
+                self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
                 
                 if isAttemptCorrect() {
                     print("WIN")

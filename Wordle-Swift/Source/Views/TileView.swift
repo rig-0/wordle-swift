@@ -7,12 +7,13 @@ import UIKit
 
 class TileView: UIView {
 
-    var key: Key? {
+    public var key: Key? {
         didSet {
             self.update()
         }
     }
-    var state: KeyState = .tbd {
+    
+    public var state: KeyState = .tbd {
         didSet {
             self.update()
         }
@@ -33,9 +34,6 @@ class TileView: UIView {
     private func setupView() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
-
-        self.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
-        self.layer.borderWidth = 2
         
         let labelView = UILabel()
         labelView.textColor = .black

@@ -13,7 +13,14 @@ class KeyView: UIView {
 
     public weak var delegate: KeyViewDelegate?
     
-    private var key: Key?
+    public var key: Key?
+    
+    public var state: KeyState = .tbd {
+        didSet {
+            self.update()
+        }
+    }
+    
     private var labelView: UILabel!
     private var widthConstraint: NSLayoutConstraint!
     private var heightConstraint: NSLayoutConstraint!
@@ -68,6 +75,7 @@ class KeyView: UIView {
     private func update() {
         self.labelView.attributedText = self.textForKey(self.key)
         self.backgroundColor = self.backgroundColorForKey(self.key)
+        self.labelView.textColor = self.textColorForState()
     }
     
     private func textForKey(_ : Key?) -> NSAttributedString? {
@@ -94,7 +102,20 @@ class KeyView: UIView {
         case .__:
             return .clear
         default:
+            if self.state == .correct {
+                return UIColor.App.keyStateCorrect
+            }
+            
             return UIColor.App.keyStateEmpty
+        }
+    }
+    
+    private func textColorForState() -> UIColor {
+        switch self.state {
+        case .empty, .tbd:
+            return .black
+        default:
+            return .white
         }
     }
     

@@ -73,6 +73,26 @@ class KeyboardView: UIView {
             }
         }
     }
+    
+    public func updateKeyStates(tileViews: [[TileView]]) {
+        let correctWord = "AAAZZ"
+        
+        var keyStates: [Key : KeyState] = [:]
+        for key in Key.allCases {
+            // For each key that is not ENTER or DELETE, determine state
+            // of key by checking against correct word
+            if key == .ENTER || key == .DELETE { continue }
+
+            // TODO: How am I going to determine state for each key?
+            // Plan it out first. Write it out. What's the best way to do this? 
+        }
+        
+        for keyView in self.keyViews {
+            guard let key = keyView.key else { continue }
+            guard let state = keyStates[key] else { continue }
+            keyView.state = state
+        }
+    }
 }
 
 extension KeyboardView: KeyViewDelegate {

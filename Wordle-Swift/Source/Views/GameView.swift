@@ -21,6 +21,7 @@ class GameView: UIView {
     
     private func setupView() {
         let gridView = GridView()
+        gridView.delegate = self
         self.addSubview(gridView)
         gridView.translatesAutoresizingMaskIntoConstraints = false
         gridView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -43,5 +44,11 @@ class GameView: UIView {
 extension GameView: KeyboardViewDelegate {
     func didSelect(key: Key) {
         self.gridView.input(key: key)
+    }
+}
+
+extension GameView: GridViewDelegate {
+    func didCompleteAttempt(tileViews: [[TileView]]) {
+        self.keyboardView.updateKeyStates(tileViews: tileViews)
     }
 }

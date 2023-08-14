@@ -17,6 +17,7 @@
 		C72776562A883CEA00BA1ED4 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776552A883CEA00BA1ED4 /* KeyView.swift */; };
 		C72776582A88412D00BA1ED4 /* UIFont+AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776572A88412D00BA1ED4 /* UIFont+AppFonts.swift */; };
 		C727765A2A89A80600BA1ED4 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776592A89A80600BA1ED4 /* GameView.swift */; };
+		C727765C2A89E70F00BA1ED4 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765B2A89E70F00BA1ED4 /* GameState.swift */; };
 		C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018702A870E0A00E59E0D /* AppDelegate.swift */; };
 		C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018722A870E0A00E59E0D /* SceneDelegate.swift */; };
 		C78018752A870E0A00E59E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018742A870E0A00E59E0D /* ViewController.swift */; };
@@ -56,6 +57,7 @@
 		C72776552A883CEA00BA1ED4 /* KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		C72776572A88412D00BA1ED4 /* UIFont+AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AppFonts.swift"; sourceTree = "<group>"; };
 		C72776592A89A80600BA1ED4 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		C727765B2A89E70F00BA1ED4 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		C780186D2A870E0A00E59E0D /* Wordle-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordle-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018702A870E0A00E59E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C78018722A870E0A00E59E0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 		C72776422A8714E600BA1ED4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C727765B2A89E70F00BA1ED4 /* GameState.swift */,
 				C72776432A8714F900BA1ED4 /* Key.swift */,
 				C727764E2A88149B00BA1ED4 /* KeyState.swift */,
 			);
@@ -125,11 +128,11 @@
 		C727764B2A8731C300BA1ED4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C72776492A8731BF00BA1ED4 /* TileView.swift */,
+				C72776592A89A80600BA1ED4 /* GameView.swift */,
 				C727764C2A8735F100BA1ED4 /* GridView.swift */,
 				C72776532A8839BA00BA1ED4 /* KeyboardView.swift */,
 				C72776552A883CEA00BA1ED4 /* KeyView.swift */,
-				C72776592A89A80600BA1ED4 /* GameView.swift */,
+				C72776492A8731BF00BA1ED4 /* TileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			files = (
 				C78018752A870E0A00E59E0D /* ViewController.swift in Sources */,
 				C72776442A8714F900BA1ED4 /* Key.swift in Sources */,
+				C727765C2A89E70F00BA1ED4 /* GameState.swift in Sources */,
 				C72776562A883CEA00BA1ED4 /* KeyView.swift in Sources */,
 				C727764F2A88149B00BA1ED4 /* KeyState.swift in Sources */,
 				C72776542A8839BA00BA1ED4 /* KeyboardView.swift in Sources */,
