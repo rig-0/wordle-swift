@@ -19,6 +19,9 @@
 		C727765A2A89A80600BA1ED4 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776592A89A80600BA1ED4 /* GameView.swift */; };
 		C727765C2A89E70F00BA1ED4 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765B2A89E70F00BA1ED4 /* GameState.swift */; };
 		C727765E2A8C084600BA1ED4 /* UIImage+AppImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765D2A8C084600BA1ED4 /* UIImage+AppImages.swift */; };
+		C72776602A8C09B500BA1ED4 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765F2A8C09B500BA1ED4 /* Words.swift */; };
+		C72776622A8C09E500BA1ED4 /* word_list.json in Resources */ = {isa = PBXBuildFile; fileRef = C72776612A8C09E500BA1ED4 /* word_list.json */; };
+		C72776642A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776632A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift */; };
 		C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018702A870E0A00E59E0D /* AppDelegate.swift */; };
 		C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018722A870E0A00E59E0D /* SceneDelegate.swift */; };
 		C78018752A870E0A00E59E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018742A870E0A00E59E0D /* ViewController.swift */; };
@@ -60,6 +63,9 @@
 		C72776592A89A80600BA1ED4 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		C727765B2A89E70F00BA1ED4 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		C727765D2A8C084600BA1ED4 /* UIImage+AppImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+AppImages.swift"; sourceTree = "<group>"; };
+		C727765F2A8C09B500BA1ED4 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
+		C72776612A8C09E500BA1ED4 /* word_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = word_list.json; sourceTree = "<group>"; };
+		C72776632A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+DecodeJSON.swift"; sourceTree = "<group>"; };
 		C780186D2A870E0A00E59E0D /* Wordle-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordle-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018702A870E0A00E59E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C78018722A870E0A00E59E0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +121,8 @@
 				C727765B2A89E70F00BA1ED4 /* GameState.swift */,
 				C72776432A8714F900BA1ED4 /* Key.swift */,
 				C727764E2A88149B00BA1ED4 /* KeyState.swift */,
+				C727765F2A8C09B500BA1ED4 /* Words.swift */,
+				C72776612A8C09E500BA1ED4 /* word_list.json */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -145,6 +153,7 @@
 				C72776512A88384000BA1ED4 /* UIColor+AppColors.swift */,
 				C72776572A88412D00BA1ED4 /* UIFont+AppFonts.swift */,
 				C727765D2A8C084600BA1ED4 /* UIImage+AppImages.swift */,
+				C72776632A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -308,6 +317,7 @@
 			files = (
 				C780187D2A870E0B00E59E0D /* LaunchScreen.storyboard in Resources */,
 				C780187A2A870E0B00E59E0D /* Assets.xcassets in Resources */,
+				C72776622A8C09E500BA1ED4 /* word_list.json in Resources */,
 				C78018782A870E0A00E59E0D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -340,8 +350,10 @@
 				C727764F2A88149B00BA1ED4 /* KeyState.swift in Sources */,
 				C72776542A8839BA00BA1ED4 /* KeyboardView.swift in Sources */,
 				C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */,
+				C72776642A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift in Sources */,
 				C727765E2A8C084600BA1ED4 /* UIImage+AppImages.swift in Sources */,
 				C727764A2A8731BF00BA1ED4 /* TileView.swift in Sources */,
+				C72776602A8C09B500BA1ED4 /* Words.swift in Sources */,
 				C72776522A88384000BA1ED4 /* UIColor+AppColors.swift in Sources */,
 				C727764D2A8735F100BA1ED4 /* GridView.swift in Sources */,
 				C72776582A88412D00BA1ED4 /* UIFont+AppFonts.swift in Sources */,

@@ -20,15 +20,13 @@ class GridView: UIView {
     var activeAttempt = 0
     var gameState: GameState = .playing
     
-    let correctWord = "AAAZZ"
-    
     init() {
         super.init(frame: .zero)
         self.setupView()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
     func setupView() {
@@ -80,6 +78,11 @@ class GridView: UIView {
             let lastTile = self.tileViews[self.activeAttempt].last
             if lastTile?.key != nil {
                 
+                guard isAttemptValid() else {
+                    print("Word is invalid.")
+                    return
+                }
+                
                 let tileStates = determineKeyPlacementForAttempt()
                 for i in 0 ..< self.tileViews[self.activeAttempt].count {
                     self.tileViews[self.activeAttempt][i].state = tileStates[i]
@@ -109,9 +112,14 @@ class GridView: UIView {
         }
     }
     
+    private func isAttemptValid() -> Bool {
+        let attemptWord = self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
+        return Game.instance.wordList.isValid(attemptWord)
+    }
+    
     private func isAttemptCorrect() -> Bool {
         let attemptWord = self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
-        return attemptWord == self.correctWord
+        return attemptWord == Game.instance.correctWord
     }
     
     private func determineKeyPlacementForAttempt() -> [KeyState] {
@@ -146,12 +154,12 @@ class GridView: UIView {
         for _ in self.tileViews[self.activeAttempt] {
             keyStates.append(.tbd)
         }
-        
-        var discardArray = Array(self.correctWord)
+       
+        var discardArray = Array(Game.instance.correctWord)
         
         for i in 0 ..< self.tileViews[self.activeAttempt].count {
             let tileKey = self.tileViews[self.activeAttempt][i].key
-            if tileKey?.rawValue == String(Array(self.correctWord)[i]) {
+            if tileKey?.rawValue == String(Array(Game.instance.correctWord)[i]) {
                 keyStates[i] = .correct
                 if let firstIndex = discardArray.firstIndex(of: Character(tileKey?.rawValue ?? "")) {
                     discardArray.remove(at: firstIndex)
