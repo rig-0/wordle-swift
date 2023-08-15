@@ -21,7 +21,6 @@ class TileView: UIView {
     
     private var wrapperView: UIView!
     private var wrapperLeadingConstraint: NSLayoutConstraint!
-//    private var wrapperHeightConstraint: NSLayoutConstraint!
     private var labelView: UILabel!
     
     init(key: Key? = nil) {
@@ -43,8 +42,6 @@ class TileView: UIView {
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-//        self.wrapperHeightConstraint = wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor)
-//        self.wrapperHeightConstraint.isActive = true
         self.wrapperLeadingConstraint = wrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         self.wrapperLeadingConstraint.isActive = true
         wrapperView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
@@ -93,7 +90,6 @@ class TileView: UIView {
         }
     }
     
-    
     public func animateReveal(state: KeyState) {
         UIView.animate(withDuration: 0.2, animations: {
             self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 0.001);
@@ -102,32 +98,10 @@ class TileView: UIView {
             UIView.animate(withDuration: 0.2, animations: {
                 self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             }, completion: { finished in
+                print("Done Animating")
             })
         })
     }
-    
-//    public func animateReveal(state: KeyState) {
-//        self.wrapperView.clipsToBounds = true
-//        self.wrapperHeightConstraint.isActive = false
-//        self.wrapperHeightConstraint = self.wrapperView.heightAnchor.constraint(equalToConstant: 0)
-//        self.wrapperHeightConstraint.isActive = true
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.layoutIfNeeded()
-//        }, completion: { finished in
-//
-//            self.state = state
-//
-//            self.wrapperHeightConstraint.isActive = false
-//            self.wrapperHeightConstraint = self.wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor)
-//            self.wrapperHeightConstraint.isActive = true
-//            UIView.animate(withDuration: 0.3, animations: {
-//                self.layoutIfNeeded()
-//            }, completion: { finished in
-//
-//            })
-//
-//        })
-//    }
     
     public func animateShake() {
         let duration = 0.05

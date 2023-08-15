@@ -93,6 +93,7 @@ class GridView: UIView {
                     })
                 }
                 
+                // TODO: Call this on completion of row animation (we need to wait until last state gets set on tileView)
                 self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
 
                 if isAttemptCorrect() {
