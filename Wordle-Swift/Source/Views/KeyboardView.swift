@@ -75,22 +75,24 @@ class KeyboardView: UIView {
     }
     
     public func updateKeyStates(tileViews: [[TileView]]) {
-        let correctWord = "AAAZZ"
         
-        var keyStates: [Key : KeyState] = [:]
-        for key in Key.allCases {
-            // For each key that is not ENTER or DELETE, determine state
-            // of key by checking against correct word
-            if key == .ENTER || key == .DELETE { continue }
-
-            // TODO: How am I going to determine state for each key?
-            // Plan it out first. Write it out. What's the best way to do this? 
+        let tileViews = tileViews.joined()
+        let absentTiles = tileViews.filter({ $0.state == .absent })
+        for tileView in absentTiles {
+            let keyView = self.keyViews.first(where: { $0.key == tileView.key })
+            keyView?.state = tileView.state
         }
-        
-        for keyView in self.keyViews {
-            guard let key = keyView.key else { continue }
-            guard let state = keyStates[key] else { continue }
-            keyView.state = state
+
+        let presentTiles = tileViews.filter({ $0.state == .present })
+        for tileView in presentTiles {
+            let keyView = self.keyViews.first(where: { $0.key == tileView.key })
+            keyView?.state = tileView.state
+        }
+
+        let correctTiles = tileViews.filter({ $0.state == .correct })
+        for tileView in correctTiles {
+            let keyView = self.keyViews.first(where: { $0.key == tileView.key })
+            keyView?.state = tileView.state
         }
     }
 }

@@ -87,7 +87,7 @@ class KeyView: UIView {
             return NSAttributedString(string: "ENTER", attributes: myAttribute)
         case .DELETE:
             let attachment = NSTextAttachment()
-            let deleteImage = UIImage(named: "Key_DELETE")!
+            let deleteImage = UIImage.App.keyDelete
             attachment.image = deleteImage
             attachment.bounds = CGRect(x: 0, y: -2, width: deleteImage.size.width, height: deleteImage.size.height)
             return NSAttributedString(attachment: attachment)
@@ -102,11 +102,17 @@ class KeyView: UIView {
         case .__:
             return .clear
         default:
-            if self.state == .correct {
-                return UIColor.App.keyStateCorrect
-            }
             
-            return UIColor.App.keyStateEmpty
+            switch self.state {
+            case .correct:
+                return UIColor.App.keyStateCorrect
+            case .absent:
+                return UIColor.App.keyStateAbsent
+            case .present:
+                return UIColor.App.keyStatePresent
+            default:
+                return UIColor.App.keyStateEmpty
+            }
         }
     }
     
