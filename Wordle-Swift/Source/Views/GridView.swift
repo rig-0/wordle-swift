@@ -95,14 +95,15 @@ class GridView: UIView {
                                 self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
                                 
                                 if self.isAttemptCorrect() {
-                                    print("WIN")
-                                    self.gameState = .win
                                     
                                     for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
                                             self.tileViews[currentActiveAttemptIndex][i].animateSolve(completion: {
                                                 if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
-                                                    
+
+                                                    print("WIN")
+                                                    self.gameState = .win
+
                                                 }
                                             })
                                         })
