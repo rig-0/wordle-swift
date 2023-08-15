@@ -20,7 +20,8 @@ class TileView: UIView {
     }
     
     private var wrapperView: UIView!
-    private var wrapperLeadingConstraint: NSLayoutConstraint!
+    private var wrapperHorizontalConstraint: NSLayoutConstraint!
+    private var wrapperVerticalConstraint: NSLayoutConstraint!
     private var labelView: UILabel!
     
     init(key: Key? = nil) {
@@ -42,8 +43,8 @@ class TileView: UIView {
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
-        self.wrapperLeadingConstraint = wrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        self.wrapperLeadingConstraint.isActive = true
+        self.wrapperHorizontalConstraint = wrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        self.wrapperHorizontalConstraint.isActive = true
         wrapperView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.wrapperView = wrapperView
         
@@ -131,7 +132,7 @@ class TileView: UIView {
     }
     
     private func animate(offset: CGFloat, duration: CGFloat, completion: @escaping (() -> Void)) {
-        self.wrapperLeadingConstraint.constant = offset
+        self.wrapperHorizontalConstraint.constant = offset
         UIView.animate(withDuration: duration, animations: {
             self.layoutIfNeeded()
         }, completion: { finished in
