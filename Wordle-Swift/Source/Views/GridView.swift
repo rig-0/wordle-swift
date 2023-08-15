@@ -97,6 +97,17 @@ class GridView: UIView {
                                 if self.isAttemptCorrect() {
                                     print("WIN")
                                     self.gameState = .win
+                                    
+                                    for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
+                                            self.tileViews[currentActiveAttemptIndex][i].animateSolve(completion: {
+                                                if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
+                                                    
+                                                }
+                                            })
+                                        })
+                                    }
+                                    
                                 } else {
                                     self.activeAttempt += 1
                                     if self.activeAttempt == self.kNumberOfAttempts {
@@ -124,19 +135,10 @@ class GridView: UIView {
         }
     }
     
-    private func animateActiveAttemptRowWithReveal() {
-//        var index = 0.0
-//        for tile in self.tileViews[self.activeAttempt] {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + (index * 0.2), execute: {
-//                tile.animateReveal()
-//            })
-//            index += 1
-//        }
-    }
-    
     private func animateActiveAttemptRowWithError() {
         for tile in self.tileViews[self.activeAttempt] {
-            tile.animateShake()
+            //tile.animateShake()
+            tile.animateSolve(completion: {})
         }
     }
     

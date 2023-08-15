@@ -45,7 +45,8 @@ class TileView: UIView {
         wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         self.wrapperHorizontalConstraint = wrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         self.wrapperHorizontalConstraint.isActive = true
-        wrapperView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        self.wrapperVerticalConstraint = wrapperView.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        self.wrapperVerticalConstraint.isActive = true
         self.wrapperView = wrapperView
         
         let labelView = UILabel()
@@ -100,6 +101,21 @@ class TileView: UIView {
                 self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             }, completion: { finished in
                 print("Done Animating")
+                completion()
+            })
+        })
+    }
+    
+    public func animateSolve(completion: @escaping (() -> Void)) {
+        let offset = 15.0
+        self.wrapperVerticalConstraint.constant = -offset
+        UIView.animate(withDuration: 0.2, animations: {
+            self.layoutIfNeeded()
+        }, completion: { finished in
+            self.wrapperVerticalConstraint.constant = 0
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8, animations: {
+                self.layoutIfNeeded()
+            }, completion: { finished in
                 completion()
             })
         })
