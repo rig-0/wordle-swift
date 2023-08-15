@@ -90,69 +90,37 @@ class TileView: UIView {
     }
     
     public func animateShake() {
-        
-        let duration = 0.04
-        let offset = 4.0
-        
-        self.wrapperLeadingConstraint.constant = -offset/2
-        UIView.animate(withDuration: duration, animations: {
-            self.layoutIfNeeded()
-        }, completion: { finished in
-            self.wrapperLeadingConstraint.constant = offset/2
-            UIView.animate(withDuration: duration, animations: {
-                self.layoutIfNeeded()
-            }, completion: { finished in
-                self.wrapperLeadingConstraint.constant = -offset/2
-                UIView.animate(withDuration: duration, animations: {
-                    self.layoutIfNeeded()
-                }, completion: { finished in
-                    self.wrapperLeadingConstraint.constant = offset
-                    UIView.animate(withDuration: duration, animations: {
-                        self.layoutIfNeeded()
-                    }, completion: { finished in
-                        self.wrapperLeadingConstraint.constant = -offset
-                        UIView.animate(withDuration: duration, animations: {
-                            self.layoutIfNeeded()
-                        }, completion: { finished in
-                            self.wrapperLeadingConstraint.constant = offset
-                            UIView.animate(withDuration: duration, animations: {
-                                self.layoutIfNeeded()
-                            }, completion: { finished in
-                                self.wrapperLeadingConstraint.constant = -offset/2
-                                UIView.animate(withDuration: duration, animations: {
-                                    self.layoutIfNeeded()
-                                }, completion: { finished in
-                                    self.wrapperLeadingConstraint.constant = offset/2
-                                    UIView.animate(withDuration: duration, animations: {
-                                        self.layoutIfNeeded()
-                                    }, completion: { finished in
-                                        self.wrapperLeadingConstraint.constant = -offset/2
-                                        UIView.animate(withDuration: duration * 1.5, animations: {
-                                            self.layoutIfNeeded()
-                                        }, completion: { finished in
-                                            self.wrapperLeadingConstraint.constant = 0
-                                            UIView.animate(withDuration: duration * 2, animations: {
-                                                self.layoutIfNeeded()
-                                            }, completion: { finished in
-                                                // Animation Complete
-                                            })
-                                        })
-                                    })
-                                })
-                            })
-                        })
-                    })
-                })
-            })
-        })
+        let duration = 0.05
+        let offset = 3.0
+        self.animate(offset: -offset/2, duration: duration) {
+            self.animate(offset: offset/2, duration: duration) {
+                self.animate(offset: -offset/2, duration: duration) {
+                    self.animate(offset: offset, duration: duration) {
+                        self.animate(offset: -offset, duration: duration) {
+                            self.animate(offset: offset, duration: duration) {
+                                self.animate(offset: -offset/2, duration: duration) {
+                                    self.animate(offset: offset/2, duration: duration) {
+                                        self.animate(offset: -offset/2, duration: duration * 1.5) {
+                                            self.animate(offset: 0, duration: duration * 1.5) {
+                                                print("Done Animating")
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
-    private func animate(offset: CGFloat, duration: CGFloat, completion: (() -> Void)) {
+    private func animate(offset: CGFloat, duration: CGFloat, completion: @escaping (() -> Void)) {
         self.wrapperLeadingConstraint.constant = offset
         UIView.animate(withDuration: duration, animations: {
             self.layoutIfNeeded()
         }, completion: { finished in
-            
+            completion()
         })
     }
 }

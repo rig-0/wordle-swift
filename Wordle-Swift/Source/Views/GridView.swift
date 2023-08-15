@@ -80,6 +80,7 @@ class GridView: UIView {
                 
                 guard isAttemptValid() else {
                     print("ERROR: Not in word list")
+                    self.animateActiveAttemptRowWithError()
                     return
                 }
                 
@@ -102,9 +103,7 @@ class GridView: UIView {
                 }
             } else {
                 print("ERROR: Not enough letters")
-                for tile in self.tileViews[self.activeAttempt] {
-                    tile.animateShake()
-                }
+                self.animateActiveAttemptRowWithError()
             }
         }
         else {
@@ -114,6 +113,12 @@ class GridView: UIView {
                     return
                 }
             }
+        }
+    }
+    
+    private func animateActiveAttemptRowWithError() {
+        for tile in self.tileViews[self.activeAttempt] {
+            tile.animateShake()
         }
     }
     
