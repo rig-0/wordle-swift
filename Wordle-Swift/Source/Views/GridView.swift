@@ -89,23 +89,26 @@ class GridView: UIView {
                 let currentActiveAttemptIndex = self.activeAttempt
                 for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
                     DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
-                        self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: tileStates[i])
+                        self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: tileStates[i], completion: {
+                            if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
+                                
+                                self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
+                                
+                                if self.isAttemptCorrect() {
+                                    print("WIN")
+                                    self.gameState = .win
+                                } else {
+                                    self.activeAttempt += 1
+                                    if self.activeAttempt == self.kNumberOfAttempts {
+                                        print("LOSE")
+                                        self.gameState = .lose
+                                    }
+                                }
+                            }
+                        })
                     })
                 }
                 
-                // TODO: Call this on completion of row animation (we need to wait until last state gets set on tileView)
-                self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
-
-                if isAttemptCorrect() {
-                    print("WIN")
-                    self.gameState = .win
-                } else {
-                    self.activeAttempt += 1
-                    if self.activeAttempt == self.kNumberOfAttempts {
-                        print("LOSE")
-                        self.gameState = .lose
-                    }
-                }
             } else {
                 print("ERROR: Not enough letters")
                 self.animateActiveAttemptRowWithError()

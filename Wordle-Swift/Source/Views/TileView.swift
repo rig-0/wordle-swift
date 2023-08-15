@@ -90,8 +90,8 @@ class TileView: UIView {
         }
     }
     
-    public func animateReveal(state: KeyState) {
-        UIView.animate(withDuration: 0.2, animations: {
+    public func animateReveal(state: KeyState, completion: @escaping (() -> Void)) {
+        UIView.animate(withDuration: 0.3, animations: {
             self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 0.001);
         }, completion: { finished in
             self.state = state
@@ -99,6 +99,7 @@ class TileView: UIView {
                 self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             }, completion: { finished in
                 print("Done Animating")
+                completion()
             })
         })
     }
