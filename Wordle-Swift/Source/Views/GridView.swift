@@ -79,7 +79,6 @@ class GridView: UIView {
             if lastTile?.key != nil {
                 
                 guard isAttemptValid() else {
-                    print("Word is invalid.")
                     print("ERROR: Not in word list")
                     return
                 }
@@ -103,6 +102,9 @@ class GridView: UIView {
                 }
             } else {
                 print("ERROR: Not enough letters")
+                for tile in self.tileViews[self.activeAttempt] {
+                    tile.animateShake()
+                }
             }
         }
         else {

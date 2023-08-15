@@ -19,6 +19,8 @@ class TileView: UIView {
         }
     }
     
+    private var wrapperView: UIView!
+    private var wrapperLeadingConstraint: NSLayoutConstraint!
     private var labelView: UILabel!
     
     init(key: Key? = nil) {
@@ -35,14 +37,24 @@ class TileView: UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
         
+        let wrapperView = UIView()
+        self.addSubview(wrapperView)
+        wrapperView.translatesAutoresizingMaskIntoConstraints = false
+        wrapperView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        wrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        self.wrapperLeadingConstraint = wrapperView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        self.wrapperLeadingConstraint.isActive = true
+        wrapperView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        self.wrapperView = wrapperView
+        
         let labelView = UILabel()
         labelView.textColor = .black
         labelView.font = UIFont.App.tileFont
         labelView.textAlignment = .center
-        self.addSubview(labelView)
+        wrapperView.addSubview(labelView)
         labelView.translatesAutoresizingMaskIntoConstraints = false
-        labelView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        labelView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        labelView.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor).isActive = true
+        labelView.centerYAnchor.constraint(equalTo: wrapperView.centerYAnchor).isActive = true
         self.labelView = labelView
         
         update()
@@ -52,17 +64,17 @@ class TileView: UIView {
         self.labelView.text = self.key?.rawValue
         
         if self.state == .tbd {
-            self.layer.borderWidth = 2
+            self.wrapperView.layer.borderWidth = 2
             self.labelView.textColor = .black
             if let _ = self.key {
-                self.layer.borderColor = UIColor.App.keyStateTbd.cgColor
+                self.wrapperView.layer.borderColor = UIColor.App.keyStateTbd.cgColor
             } else {
-                self.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
+                self.wrapperView.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
             }
         } else {
-            self.layer.borderWidth = 0
+            self.wrapperView.layer.borderWidth = 0
             self.labelView.textColor = .white
-            self.backgroundColor = backgroundColorForState(self.state)
+            self.wrapperView.backgroundColor = backgroundColorForState(self.state)
         }
     }
     
@@ -75,6 +87,73 @@ class TileView: UIView {
         default:
             return UIColor.App.keyStateAbsent
         }
+    }
+    
+    public func animateShake() {
+        
+        let duration = 0.04
+        let offset = 4.0
+        
+        self.wrapperLeadingConstraint.constant = -offset/2
+        UIView.animate(withDuration: duration, animations: {
+            self.layoutIfNeeded()
+        }, completion: { finished in
+            self.wrapperLeadingConstraint.constant = offset/2
+            UIView.animate(withDuration: duration, animations: {
+                self.layoutIfNeeded()
+            }, completion: { finished in
+                self.wrapperLeadingConstraint.constant = -offset/2
+                UIView.animate(withDuration: duration, animations: {
+                    self.layoutIfNeeded()
+                }, completion: { finished in
+                    self.wrapperLeadingConstraint.constant = offset
+                    UIView.animate(withDuration: duration, animations: {
+                        self.layoutIfNeeded()
+                    }, completion: { finished in
+                        self.wrapperLeadingConstraint.constant = -offset
+                        UIView.animate(withDuration: duration, animations: {
+                            self.layoutIfNeeded()
+                        }, completion: { finished in
+                            self.wrapperLeadingConstraint.constant = offset
+                            UIView.animate(withDuration: duration, animations: {
+                                self.layoutIfNeeded()
+                            }, completion: { finished in
+                                self.wrapperLeadingConstraint.constant = -offset/2
+                                UIView.animate(withDuration: duration, animations: {
+                                    self.layoutIfNeeded()
+                                }, completion: { finished in
+                                    self.wrapperLeadingConstraint.constant = offset/2
+                                    UIView.animate(withDuration: duration, animations: {
+                                        self.layoutIfNeeded()
+                                    }, completion: { finished in
+                                        self.wrapperLeadingConstraint.constant = -offset/2
+                                        UIView.animate(withDuration: duration * 1.5, animations: {
+                                            self.layoutIfNeeded()
+                                        }, completion: { finished in
+                                            self.wrapperLeadingConstraint.constant = 0
+                                            UIView.animate(withDuration: duration * 2, animations: {
+                                                self.layoutIfNeeded()
+                                            }, completion: { finished in
+                                                // Animation Complete
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    }
+    
+    private func animate(offset: CGFloat, duration: CGFloat, completion: (() -> Void)) {
+        self.wrapperLeadingConstraint.constant = offset
+        UIView.animate(withDuration: duration, animations: {
+            self.layoutIfNeeded()
+        }, completion: { finished in
+            
+        })
     }
 }
 
