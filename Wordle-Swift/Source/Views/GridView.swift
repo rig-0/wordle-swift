@@ -85,12 +85,16 @@ class GridView: UIView {
                 }
                 
                 let tileStates = determineKeyPlacementForAttempt()
-                for i in 0 ..< self.tileViews[self.activeAttempt].count {
-                    self.tileViews[self.activeAttempt][i].state = tileStates[i]
+                
+                let currentActiveAttemptIndex = self.activeAttempt
+                for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
+                        self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: tileStates[i])
+                    })
                 }
                 
                 self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
-                
+
                 if isAttemptCorrect() {
                     print("WIN")
                     self.gameState = .win
@@ -114,6 +118,16 @@ class GridView: UIView {
                 }
             }
         }
+    }
+    
+    private func animateActiveAttemptRowWithReveal() {
+//        var index = 0.0
+//        for tile in self.tileViews[self.activeAttempt] {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + (index * 0.2), execute: {
+//                tile.animateReveal()
+//            })
+//            index += 1
+//        }
     }
     
     private func animateActiveAttemptRowWithError() {

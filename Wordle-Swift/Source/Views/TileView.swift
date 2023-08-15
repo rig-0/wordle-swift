@@ -21,6 +21,7 @@ class TileView: UIView {
     
     private var wrapperView: UIView!
     private var wrapperLeadingConstraint: NSLayoutConstraint!
+//    private var wrapperHeightConstraint: NSLayoutConstraint!
     private var labelView: UILabel!
     
     init(key: Key? = nil) {
@@ -40,11 +41,13 @@ class TileView: UIView {
         let wrapperView = UIView()
         self.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
-        wrapperView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        wrapperView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.wrapperLeadingConstraint = wrapperView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
-        self.wrapperLeadingConstraint.isActive = true
         wrapperView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
+//        self.wrapperHeightConstraint = wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor)
+//        self.wrapperHeightConstraint.isActive = true
+        self.wrapperLeadingConstraint = wrapperView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        self.wrapperLeadingConstraint.isActive = true
+        wrapperView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.wrapperView = wrapperView
         
         let labelView = UILabel()
@@ -55,6 +58,7 @@ class TileView: UIView {
         labelView.translatesAutoresizingMaskIntoConstraints = false
         labelView.centerXAnchor.constraint(equalTo: wrapperView.centerXAnchor).isActive = true
         labelView.centerYAnchor.constraint(equalTo: wrapperView.centerYAnchor).isActive = true
+        labelView.heightAnchor.constraint(equalTo: self.wrapperView.heightAnchor).isActive = true
         self.labelView = labelView
         
         update()
@@ -88,6 +92,42 @@ class TileView: UIView {
             return UIColor.App.keyStateAbsent
         }
     }
+    
+    
+    public func animateReveal(state: KeyState) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 0.001);
+        }, completion: { finished in
+            self.state = state
+            UIView.animate(withDuration: 0.2, animations: {
+                self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+            }, completion: { finished in
+            })
+        })
+    }
+    
+//    public func animateReveal(state: KeyState) {
+//        self.wrapperView.clipsToBounds = true
+//        self.wrapperHeightConstraint.isActive = false
+//        self.wrapperHeightConstraint = self.wrapperView.heightAnchor.constraint(equalToConstant: 0)
+//        self.wrapperHeightConstraint.isActive = true
+//        UIView.animate(withDuration: 0.3, animations: {
+//            self.layoutIfNeeded()
+//        }, completion: { finished in
+//
+//            self.state = state
+//
+//            self.wrapperHeightConstraint.isActive = false
+//            self.wrapperHeightConstraint = self.wrapperView.heightAnchor.constraint(equalTo: self.heightAnchor)
+//            self.wrapperHeightConstraint.isActive = true
+//            UIView.animate(withDuration: 0.3, animations: {
+//                self.layoutIfNeeded()
+//            }, completion: { finished in
+//
+//            })
+//
+//        })
+//    }
     
     public func animateShake() {
         let duration = 0.05
