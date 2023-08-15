@@ -80,6 +80,7 @@ class GridView: UIView {
                 
                 guard isAttemptValid() else {
                     print("Word is invalid.")
+                    print("ERROR: Not in word list")
                     return
                 }
                 
@@ -100,6 +101,8 @@ class GridView: UIView {
                         self.gameState = .lose
                     }
                 }
+            } else {
+                print("ERROR: Not enough letters")
             }
         }
         else {
