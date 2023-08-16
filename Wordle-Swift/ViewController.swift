@@ -36,10 +36,10 @@ class ViewController: UIViewController {
         dividerView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
         dividerView.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
-        
         let gameView = GameView()
         self.view.addSubview(gameView)
         gameView.translatesAutoresizingMaskIntoConstraints = false
+        gameView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20).isActive = true
         gameView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         gameView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         gameView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
