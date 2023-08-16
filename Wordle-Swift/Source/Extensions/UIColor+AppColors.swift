@@ -16,5 +16,6 @@ extension UIColor {
         static var keyStateCorrect: UIColor { UIColor(rgb: (121,168,107)) }
         static var keyStatePresent: UIColor { UIColor(rgb: (197,181,102)) }
         static var keyStateAbsent: UIColor { UIColor(rgb: (121,124,126)) }
+        static var navBarDivider: UIColor { UIColor(rgb: (212,214,218)) }
     }
 }

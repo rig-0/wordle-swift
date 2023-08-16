@@ -32,6 +32,7 @@
 		C780187D2A870E0B00E59E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C780187B2A870E0B00E59E0D /* LaunchScreen.storyboard */; };
 		C78018922A870E0B00E59E0D /* Wordle_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */; };
 		C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */; };
+		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		C780188D2A870E0B00E59E0D /* Wordle-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wordle-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITests.swift; sourceTree = "<group>"; };
 		C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C7CCB1E32A8C572E0088638D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			children = (
 				C72776592A89A80600BA1ED4 /* GameView.swift */,
 				C727764C2A8735F100BA1ED4 /* GridView.swift */,
+				C7CCB1E32A8C572E0088638D /* HeaderView.swift */,
 				C72776532A8839BA00BA1ED4 /* KeyboardView.swift */,
 				C72776552A883CEA00BA1ED4 /* KeyView.swift */,
 				C72776492A8731BF00BA1ED4 /* TileView.swift */,
@@ -367,6 +370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C78018752A870E0A00E59E0D /* ViewController.swift in Sources */,
+				C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */,
 				C72776442A8714F900BA1ED4 /* Key.swift in Sources */,
 				C727765C2A89E70F00BA1ED4 /* GameState.swift in Sources */,
 				C72776562A883CEA00BA1ED4 /* KeyView.swift in Sources */,
