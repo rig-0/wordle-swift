@@ -23,6 +23,7 @@
 		C72776622A8C09E500BA1ED4 /* word_list.json in Resources */ = {isa = PBXBuildFile; fileRef = C72776612A8C09E500BA1ED4 /* word_list.json */; };
 		C72776642A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776632A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift */; };
 		C72776662A8C2A0100BA1ED4 /* String+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776652A8C2A0100BA1ED4 /* String+Offset.swift */; };
+		C727766A2A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf in Resources */ = {isa = PBXBuildFile; fileRef = C72776692A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf */; };
 		C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018702A870E0A00E59E0D /* AppDelegate.swift */; };
 		C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018722A870E0A00E59E0D /* SceneDelegate.swift */; };
 		C78018752A870E0A00E59E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018742A870E0A00E59E0D /* ViewController.swift */; };
@@ -68,6 +69,7 @@
 		C72776612A8C09E500BA1ED4 /* word_list.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = word_list.json; sourceTree = "<group>"; };
 		C72776632A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+DecodeJSON.swift"; sourceTree = "<group>"; };
 		C72776652A8C2A0100BA1ED4 /* String+Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Offset.swift"; sourceTree = "<group>"; };
+		C72776692A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KarnakPro-CondensedBlack.otf"; sourceTree = "<group>"; };
 		C780186D2A870E0A00E59E0D /* Wordle-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordle-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018702A870E0A00E59E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C78018722A870E0A00E59E0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -161,6 +163,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C72776672A8C488200BA1ED4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C72776682A8C488200BA1ED4 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C72776682A8C488200BA1ED4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C72776692A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C78018642A870E0A00E59E0D = {
 			isa = PBXGroup;
 			children = (
@@ -185,14 +203,15 @@
 		C780186F2A870E0A00E59E0D /* Wordle-Swift */ = {
 			isa = PBXGroup;
 			children = (
-				C72776412A87140B00BA1ED4 /* Source */,
 				C78018702A870E0A00E59E0D /* AppDelegate.swift */,
-				C78018722A870E0A00E59E0D /* SceneDelegate.swift */,
-				C78018742A870E0A00E59E0D /* ViewController.swift */,
-				C78018762A870E0A00E59E0D /* Main.storyboard */,
 				C78018792A870E0B00E59E0D /* Assets.xcassets */,
-				C780187B2A870E0B00E59E0D /* LaunchScreen.storyboard */,
 				C780187E2A870E0B00E59E0D /* Info.plist */,
+				C780187B2A870E0B00E59E0D /* LaunchScreen.storyboard */,
+				C78018762A870E0A00E59E0D /* Main.storyboard */,
+				C72776672A8C488200BA1ED4 /* Resources */,
+				C78018722A870E0A00E59E0D /* SceneDelegate.swift */,
+				C72776412A87140B00BA1ED4 /* Source */,
+				C78018742A870E0A00E59E0D /* ViewController.swift */,
 			);
 			path = "Wordle-Swift";
 			sourceTree = "<group>";
@@ -322,6 +341,7 @@
 				C780187A2A870E0B00E59E0D /* Assets.xcassets in Resources */,
 				C72776622A8C09E500BA1ED4 /* word_list.json in Resources */,
 				C78018782A870E0A00E59E0D /* Main.storyboard in Resources */,
+				C727766A2A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
