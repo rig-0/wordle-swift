@@ -67,7 +67,6 @@ class GameView: UIView {
         gridView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         gridView.centerYAnchor.constraint(equalTo: gridCenterView.centerYAnchor).isActive = true
         self.gridView = gridView
-
     }
 }
 

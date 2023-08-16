@@ -97,7 +97,8 @@ class GridView: UIView {
                                 if self.isAttemptCorrect() {
                                     
                                     for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
+                                        let delay = i > 0 ? 0.05 : 0
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.10) + delay + 0.3, execute: {
                                             self.tileViews[currentActiveAttemptIndex][i].animateSolve(completion: {
                                                 if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
 

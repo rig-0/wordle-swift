@@ -107,13 +107,13 @@ class TileView: UIView {
     }
     
     public func animateSolve(completion: @escaping (() -> Void)) {
-        let offset = 15.0
+        let offset = 30.0
         self.wrapperVerticalConstraint.constant = -offset
         UIView.animate(withDuration: 0.2, animations: {
             self.layoutIfNeeded()
         }, completion: { finished in
             self.wrapperVerticalConstraint.constant = 0
-            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8, animations: {
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 20, animations: {
                 self.layoutIfNeeded()
             }, completion: { finished in
                 completion()
