@@ -98,15 +98,22 @@ class GridView: UIView {
                                 
                                 if self.isAttemptCorrect() {
                                     
+                                    switch currentActiveAttemptIndex {
+                                    case 0:  self.delegate?.shouldPresentToast(type: .winGenius)
+                                    case 1:  self.delegate?.shouldPresentToast(type: .winMagnificent)
+                                    case 2:  self.delegate?.shouldPresentToast(type: .winImpressive)
+                                    case 3:  self.delegate?.shouldPresentToast(type: .winSplendid)
+                                    case 4:  self.delegate?.shouldPresentToast(type: .winGreat)
+                                    default: self.delegate?.shouldPresentToast(type: .winPhew)
+                                    }
+                                    
                                     for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
                                         let delay = i > 0 ? 0.05 : 0
                                         DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.10) + delay + 0.3, execute: {
                                             self.tileViews[currentActiveAttemptIndex][i].animateSolve(completion: {
                                                 if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
-
                                                     print("WIN")
                                                     self.gameState = .win
-
                                                 }
                                             })
                                         })
