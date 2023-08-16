@@ -100,7 +100,6 @@ class TileView: UIView {
             UIView.animate(withDuration: 0.15, animations: {
                 self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             }, completion: { finished in
-                print("Done Animating")
                 completion()
             })
         })
@@ -134,7 +133,6 @@ class TileView: UIView {
                                     self.animate(offset: offset/2, duration: duration) {
                                         self.animate(offset: -offset/2, duration: duration * 1.5) {
                                             self.animate(offset: 0, duration: duration * 1.5) {
-                                                print("Done Animating")
                                             }
                                         }
                                     }

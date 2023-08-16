@@ -7,6 +7,7 @@ import UIKit
 
 protocol GridViewDelegate: AnyObject {
     func didCompleteAttempt(tileViews: [[TileView]])
+    func shouldPresentToast(type: ToastItemType)
 }
 
 class GridView: UIView {
@@ -81,6 +82,7 @@ class GridView: UIView {
                 guard isAttemptValid() else {
                     print("ERROR: Not in word list")
                     self.animateActiveAttemptRowWithError()
+                    self.delegate?.shouldPresentToast(type: .notInWordList)
                     return
                 }
                 
@@ -125,6 +127,7 @@ class GridView: UIView {
             } else {
                 print("ERROR: Not enough letters")
                 self.animateActiveAttemptRowWithError()
+                self.delegate?.shouldPresentToast(type: .notEnoughLetters)
             }
         }
         else {

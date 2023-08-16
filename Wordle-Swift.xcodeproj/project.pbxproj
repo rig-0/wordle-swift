@@ -33,6 +33,7 @@
 		C78018922A870E0B00E59E0D /* Wordle_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */; };
 		C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */; };
 		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
+		C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITests.swift; sourceTree = "<group>"; };
 		C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C7CCB1E32A8C572E0088638D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		C7CCB1E52A8C83050088638D /* ToastStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				C72776532A8839BA00BA1ED4 /* KeyboardView.swift */,
 				C72776552A883CEA00BA1ED4 /* KeyView.swift */,
 				C72776492A8731BF00BA1ED4 /* TileView.swift */,
+				C7CCB1E52A8C83050088638D /* ToastStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				C727765E2A8C084600BA1ED4 /* UIImage+AppImages.swift in Sources */,
 				C727764A2A8731BF00BA1ED4 /* TileView.swift in Sources */,
 				C72776602A8C09B500BA1ED4 /* Words.swift in Sources */,
+				C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */,
 				C72776522A88384000BA1ED4 /* UIColor+AppColors.swift in Sources */,
 				C727764D2A8735F100BA1ED4 /* GridView.swift in Sources */,
 				C72776662A8C2A0100BA1ED4 /* String+Offset.swift in Sources */,
