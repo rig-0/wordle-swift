@@ -17,7 +17,10 @@ class ViewController: UIViewController {
         headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         headerView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         headerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
+    
+        // Start Game Instance
+        let _ = Game.instance.start()
+    
         let gameView = GameView()
         self.view.addSubview(gameView)
         gameView.translatesAutoresizingMaskIntoConstraints = false

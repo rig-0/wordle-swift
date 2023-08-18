@@ -14,9 +14,6 @@ class GameView: UIView {
     init() {
         super.init(frame: .zero)
         self.setupView()
-        
-        // Start Game Instance
-        let _ = Game.instance.start()
     }
     
     required init?(coder: NSCoder) {
