@@ -132,7 +132,6 @@
 				C727765B2A89E70F00BA1ED4 /* GameState.swift */,
 				C72776432A8714F900BA1ED4 /* Key.swift */,
 				C727764E2A88149B00BA1ED4 /* KeyState.swift */,
-				C72776612A8C09E500BA1ED4 /* word_list.json */,
 				C727765F2A8C09B500BA1ED4 /* Words.swift */,
 			);
 			path = Models;
@@ -176,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				C72776682A8C488200BA1ED4 /* Fonts */,
+				C7F9FE2C2A8EF2A800B08E00 /* JSON */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -248,6 +248,14 @@
 				C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		C7F9FE2C2A8EF2A800B08E00 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				C72776612A8C09E500BA1ED4 /* word_list.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
