@@ -35,6 +35,8 @@
 		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
 		C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
 		C7F9FE2B2A8EF1DC00B08E00 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */; };
+		C7F9FE2E2A8EF33C00B08E00 /* ToastItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2D2A8EF33C00B08E00 /* ToastItemType.swift */; };
+		C7F9FE302A8EF35000B08E00 /* ToastItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2F2A8EF35000B08E00 /* ToastItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		C7CCB1E32A8C572E0088638D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C7CCB1E52A8C83050088638D /* ToastStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStackView.swift; sourceTree = "<group>"; };
 		C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		C7F9FE2D2A8EF33C00B08E00 /* ToastItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastItemType.swift; sourceTree = "<group>"; };
+		C7F9FE2F2A8EF35000B08E00 /* ToastItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 				C727765B2A89E70F00BA1ED4 /* GameState.swift */,
 				C72776432A8714F900BA1ED4 /* Key.swift */,
 				C727764E2A88149B00BA1ED4 /* KeyState.swift */,
+				C7F9FE2D2A8EF33C00B08E00 /* ToastItemType.swift */,
 				C727765F2A8C09B500BA1ED4 /* Words.swift */,
 			);
 			path = Models;
@@ -154,6 +159,7 @@
 				C72776532A8839BA00BA1ED4 /* KeyboardView.swift */,
 				C72776552A883CEA00BA1ED4 /* KeyView.swift */,
 				C72776492A8731BF00BA1ED4 /* TileView.swift */,
+				C7F9FE2F2A8EF35000B08E00 /* ToastItemView.swift */,
 				C7CCB1E52A8C83050088638D /* ToastStackView.swift */,
 			);
 			path = Views;
@@ -406,6 +412,8 @@
 				C72776602A8C09B500BA1ED4 /* Words.swift in Sources */,
 				C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */,
 				C72776522A88384000BA1ED4 /* UIColor+AppColors.swift in Sources */,
+				C7F9FE302A8EF35000B08E00 /* ToastItemView.swift in Sources */,
+				C7F9FE2E2A8EF33C00B08E00 /* ToastItemType.swift in Sources */,
 				C727764D2A8735F100BA1ED4 /* GridView.swift in Sources */,
 				C72776662A8C2A0100BA1ED4 /* String+Offset.swift in Sources */,
 				C72776582A88412D00BA1ED4 /* UIFont+AppFonts.swift in Sources */,
