@@ -9,7 +9,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let headerView = HeaderView()
         self.view.addSubview(headerView)
         headerView.translatesAutoresizingMaskIntoConstraints = false

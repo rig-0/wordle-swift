@@ -6,7 +6,7 @@
 import UIKit
 
 class TileView: UIView {
-
+    
     public var key: Key? {
         didSet {
             self.update()

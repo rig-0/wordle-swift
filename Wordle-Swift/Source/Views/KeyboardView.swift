@@ -19,7 +19,7 @@ class KeyboardView: UIView {
         [.__, .A, .S, .D, .F, .G, .H, .J, .K, .L, .__],
         [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
     ]
-        
+    
     let kSpacingBetweenKeys = 5
     
     var keyViews: [KeyView] = []
@@ -63,7 +63,7 @@ class KeyboardView: UIView {
             rowView.axis = .horizontal
             rowView.spacing = CGFloat(self.kSpacingBetweenKeys)
             gridView.addArrangedSubview(rowView)
-
+            
             // Add KeyView for each key in row
             for key in self.rows[i] {
                 let keyView = KeyView(key: key)
@@ -82,13 +82,13 @@ class KeyboardView: UIView {
             let keyView = self.keyViews.first(where: { $0.key == tileView.key })
             keyView?.state = tileView.state
         }
-
+        
         let presentTiles = tileViews.filter({ $0.state == .present })
         for tileView in presentTiles {
             let keyView = self.keyViews.first(where: { $0.key == tileView.key })
             keyView?.state = tileView.state
         }
-
+        
         let correctTiles = tileViews.filter({ $0.state == .correct })
         for tileView in correctTiles {
             let keyView = self.keyViews.first(where: { $0.key == tileView.key })

@@ -195,7 +195,7 @@ class GridView: UIView {
         for _ in self.tileViews[self.activeAttempt] {
             keyStates.append(.tbd)
         }
-       
+        
         var discardArray = Array(Game.instance.correctWord)
         
         for i in 0 ..< self.tileViews[self.activeAttempt].count {

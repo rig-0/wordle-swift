@@ -34,6 +34,7 @@
 		C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */; };
 		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
 		C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
+		C7F9FE2B2A8EF1DC00B08E00 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C7CCB1E32A8C572E0088638D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C7CCB1E52A8C83050088638D /* ToastStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStackView.swift; sourceTree = "<group>"; };
+		C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				C72776502A88382F00BA1ED4 /* Extensions */,
-				C727764B2A8731C300BA1ED4 /* Views */,
+				C7F9FE292A8EF1CC00B08E00 /* Managers */,
 				C72776422A8714E600BA1ED4 /* Models */,
+				C727764B2A8731C300BA1ED4 /* Views */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -237,6 +240,14 @@
 				C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */,
 			);
 			path = "Wordle-SwiftUITests";
+			sourceTree = "<group>";
+		};
+		C7F9FE292A8EF1CC00B08E00 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +394,7 @@
 				C72776642A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift in Sources */,
 				C727765E2A8C084600BA1ED4 /* UIImage+AppImages.swift in Sources */,
 				C727764A2A8731BF00BA1ED4 /* TileView.swift in Sources */,
+				C7F9FE2B2A8EF1DC00B08E00 /* Game.swift in Sources */,
 				C72776602A8C09B500BA1ED4 /* Words.swift in Sources */,
 				C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */,
 				C72776522A88384000BA1ED4 /* UIColor+AppColors.swift in Sources */,

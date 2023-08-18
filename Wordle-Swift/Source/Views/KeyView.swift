@@ -10,7 +10,7 @@ protocol KeyViewDelegate: AnyObject {
 }
 
 class KeyView: UIView {
-
+    
     public weak var delegate: KeyViewDelegate?
     
     public var key: Key?

@@ -6,7 +6,7 @@
 import UIKit
 
 class ToastStackView: UIView {
-  
+    
     private var stackView: UIStackView!
     
     init() {
@@ -59,7 +59,7 @@ enum ToastItemType: String {
 class ToastItemView: UIView {
     
     var type: ToastItemType
-
+    
     init(type: ToastItemType) {
         self.type = type
         super.init(frame: .zero)

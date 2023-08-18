@@ -13,7 +13,7 @@ struct WordList: Decodable {
         if (valid + starters).contains(where: { $0.caseInsensitiveCompare(word) == .orderedSame }) {
             return true
         }
-
+        
         return false
     }
 }
