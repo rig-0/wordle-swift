@@ -10,15 +10,4 @@ enum Key: String, CaseIterable {
     case ENTER
     case DELETE
     case __
-    
-    init?(rawValue: String) {
-        guard let match = Self.allCases.first(where: {
-            // Uppercase parameter before initializing
-            $0.rawValue == rawValue.uppercased()
-        }) else {
-            return nil
-        }
-        
-        self = match
-    }
 }
