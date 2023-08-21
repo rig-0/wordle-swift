@@ -38,7 +38,9 @@ class ToastStackView: UIView {
         let toastItem = ToastItemView(type: type)
         self.stackView.addArrangedSubview(toastItem)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            toastItem.pop()
+            toastItem.animateHide(completion: { item in
+                item.removeFromSuperview()
+            })
         })
     }
 }

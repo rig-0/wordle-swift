@@ -35,14 +35,14 @@ class ToastItemView: UIView {
         errorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
     }
     
-    public func pop() {
+    public func animateHide(completion: @escaping ((ToastItemView) -> Void)) {
         UIView.animate(withDuration: 0.2, animations: {
             self.alpha = 0
         }, completion: { finished in
             UIView.animate(withDuration: 0.1, animations: {
                 self.isHidden = true
             }, completion: { finished in
-                self.removeFromSuperview()
+                completion(self)
             })
         })
     }
