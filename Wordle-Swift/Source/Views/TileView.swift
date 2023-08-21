@@ -92,6 +92,31 @@ class TileView: UIView {
         }
     }
     
+    public func animateInput(key: Key, completion: @escaping (() -> Void)) {
+        
+        // 1. Switch state to key, default styling, no animation
+        self.key = key
+        
+        // 2. Fade down to 0.4 alpha, shrink to 0.95, no animation
+        self.alpha = 0.4
+        self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.95, 0.95);
+        
+        // 3. Alpha back to 1.0, Scale up to 1.05, just shy of touching neighbors
+        UIView.animate(withDuration: 0.1, animations: {
+            self.alpha = 1.0
+            self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.05, 1.05);
+        }, completion: { finished in
+            
+            // 4. Scale back down to 1.0
+            UIView.animate(withDuration: 0.1, animations: {
+                self.wrapperView.transform = CGAffineTransformIdentity
+            }, completion: { finished in
+                completion()
+            })
+        })
+        
+    }
+    
     public func animateReveal(state: KeyState, completion: @escaping (() -> Void)) {
         UIView.animate(withDuration: 0.2, animations: {
             self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 0.001);

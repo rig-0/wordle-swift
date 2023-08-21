@@ -140,7 +140,7 @@ class GridView: UIView {
         else {
             for tile in self.tileViews[self.activeAttempt] {
                 if tile.key == nil {
-                    tile.key = key
+                    tile.animateInput(key: key, completion: {})
                     return
                 }
             }
