@@ -65,19 +65,15 @@ class TileView: UIView {
     
     private func update() {
         self.labelView.text = self.key?.rawValue
+        self.wrapperView.backgroundColor = backgroundColorForState(self.state)
         
         if self.state == .tbd {
             self.wrapperView.layer.borderWidth = 2
+            self.wrapperView.layer.borderColor = self.key != nil ? UIColor.App.keyStateTbd.cgColor : UIColor.App.keyStateEmpty.cgColor
             self.labelView.textColor = .black
-            if let _ = self.key {
-                self.wrapperView.layer.borderColor = UIColor.App.keyStateTbd.cgColor
-            } else {
-                self.wrapperView.layer.borderColor = UIColor.App.keyStateEmpty.cgColor
-            }
         } else {
             self.wrapperView.layer.borderWidth = 0
             self.labelView.textColor = .white
-            self.wrapperView.backgroundColor = backgroundColorForState(self.state)
         }
     }
     
@@ -87,10 +83,16 @@ class TileView: UIView {
             return UIColor.App.keyStateCorrect
         case .present:
             return UIColor.App.keyStatePresent
-        default:
+        case .absent:
             return UIColor.App.keyStateAbsent
+        default: // .tbd
+            return .white
         }
     }
+}
+
+// Animation Methods
+extension TileView {
     
     public func animateInput(key: Key, completion: @escaping (() -> Void)) {
         
@@ -114,7 +116,6 @@ class TileView: UIView {
                 completion()
             })
         })
-        
     }
     
     public func animateReveal(state: KeyState, completion: @escaping (() -> Void)) {
