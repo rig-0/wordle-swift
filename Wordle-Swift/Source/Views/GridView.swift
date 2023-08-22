@@ -15,7 +15,7 @@ class GridView: UIView {
     public weak var delegate: GridViewDelegate?
     
     let kNumberOfAttempts = 6
-    let kCharactersPerAttempt = 5
+    let kCharactersPerAttempt = Game.instance.correctWord.count
     
     var tileViews: [[TileView]] = []
     var activeAttempt = 0
