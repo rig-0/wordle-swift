@@ -66,7 +66,8 @@ extension GameView: KeyboardViewDelegate {
 
 extension GameView: GridViewDelegate {
     func didCompleteAttempt(tileViews: [[TileView]]) {
-        self.keyboardView.updateKeyStates(tileViews: tileViews)
+        let keyStates = Game.instance.keyboardKeyStates(with: tileViews)
+        self.keyboardView.update(keyStates: keyStates)
     }
     
     func shouldPresentToast(type: ToastItemType) {

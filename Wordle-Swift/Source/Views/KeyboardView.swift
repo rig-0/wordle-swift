@@ -20,7 +20,7 @@ class KeyboardView: UIView {
         [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
     ]
     
-    let kSpacingBetweenKeys = 5
+    let kSpacingBetweenKeys = 5.0
     
     var keyViews: [KeyView] = []
     
@@ -39,7 +39,7 @@ class KeyboardView: UIView {
         // Determine standard key size, assume first row is all standard characters
         let keysPerRow = rows.first?.count ?? 0
         let availableWidth: CGFloat = self.frame.width
-        let widthWithouthSpacing = availableWidth - CGFloat(kSpacingBetweenKeys * (keysPerRow - 1))
+        let widthWithouthSpacing = availableWidth - CGFloat(kSpacingBetweenKeys * CGFloat(keysPerRow - 1))
         let standardKeyWidth = widthWithouthSpacing / CGFloat(keysPerRow)
         self.keyViews.forEach { $0.updateKeySizeWithStandardWidth(standardKeyWidth) }
     }
@@ -49,7 +49,7 @@ class KeyboardView: UIView {
         // Primary grid view that contains all tiles
         let gridView = UIStackView()
         gridView.axis = .vertical
-        gridView.spacing = 5
+        gridView.spacing = self.kSpacingBetweenKeys
         self.addSubview(gridView)
         gridView.translatesAutoresizingMaskIntoConstraints = false
         gridView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -61,7 +61,7 @@ class KeyboardView: UIView {
         for i in 0 ..< self.rows.count {
             let rowView = UIStackView()
             rowView.axis = .horizontal
-            rowView.spacing = CGFloat(self.kSpacingBetweenKeys)
+            rowView.spacing = self.kSpacingBetweenKeys
             gridView.addArrangedSubview(rowView)
             
             // Add KeyView for each key in row
@@ -74,25 +74,10 @@ class KeyboardView: UIView {
         }
     }
     
-    public func updateKeyStates(tileViews: [[TileView]]) {
-        
-        let tileViews = tileViews.joined()
-        let absentTiles = tileViews.filter({ $0.state == .absent })
-        for tileView in absentTiles {
-            let keyView = self.keyViews.first(where: { $0.key == tileView.key })
-            keyView?.state = tileView.state
-        }
-        
-        let presentTiles = tileViews.filter({ $0.state == .present })
-        for tileView in presentTiles {
-            let keyView = self.keyViews.first(where: { $0.key == tileView.key })
-            keyView?.state = tileView.state
-        }
-        
-        let correctTiles = tileViews.filter({ $0.state == .correct })
-        for tileView in correctTiles {
-            let keyView = self.keyViews.first(where: { $0.key == tileView.key })
-            keyView?.state = tileView.state
+    public func update(keyStates: [Key : KeyState]) {
+        for keyState in keyStates {
+            let keyView = self.keyViews.first(where: { $0.key == keyState.key })
+            keyView?.state = keyState.value
         }
     }
 }

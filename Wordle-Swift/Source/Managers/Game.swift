@@ -22,5 +22,34 @@ class Game {
         self.correctWord = wordList.starters.randomElement()?.uppercased() ?? ""
         print("Word:", correctWord)
     }
+    
+    public func keyboardKeyStates(with tileViews: [[TileView]]) -> [Key : KeyState] {
+
+        var keyStates: [Key : KeyState] = [:]
+        for key in Key.allCases {
+            keyStates[key] = .tbd
+        }
+        
+        let tileViews = tileViews.joined()
+        let absentTiles = tileViews.filter({ $0.state == .absent })
+        for tileView in absentTiles {
+            guard let key = tileView.key else { continue }
+            keyStates[key] = tileView.state
+        }
+        
+        let presentTiles = tileViews.filter({ $0.state == .present })
+        for tileView in presentTiles {
+            guard let key = tileView.key else { continue }
+            keyStates[key] = tileView.state
+        }
+        
+        let correctTiles = tileViews.filter({ $0.state == .correct })
+        for tileView in correctTiles {
+            guard let key = tileView.key else { continue }
+            keyStates[key] = tileView.state
+        }
+        
+        return keyStates
+    }
 }
 
