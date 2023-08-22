@@ -88,10 +88,10 @@ class Game {
             keyStates.append(.tbd)
         }
         
-        var discardArray = Array(Game.instance.correctWord)
+        var discardArray = Array(self.correctWord)
         
         for (i, letter) in Array(attemptedWord).enumerated() {
-            if String(letter) == String(Array(Game.instance.correctWord)[i]) {
+            if String(letter) == String(Array(self.correctWord)[i]) {
                 keyStates[i] = .correct
                 if let firstIndex = discardArray.firstIndex(of: letter) {
                     discardArray.remove(at: firstIndex)
