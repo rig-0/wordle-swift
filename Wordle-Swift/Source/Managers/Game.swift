@@ -9,8 +9,11 @@ class Game {
     
     static let instance = Game()
     
+    public var gameState: GameState = .playing
     public var correctWord: String
     public var wordList: WordList
+    public let numberOfAttempts = 6
+    public var activeAttempt = 0
     
     init() {
         let wordList = WordListParser.fetch()

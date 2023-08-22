@@ -14,14 +14,15 @@ class GridView: UIView {
     
     public weak var delegate: GridViewDelegate?
     
-    let kNumberOfAttempts = 6
-    let kCharactersPerAttempt = Game.instance.correctWord.count
-    
-    var tileViews: [[TileView]] = []
     var activeAttempt = 0
     var gameState: GameState = .playing
     
-    init() {
+    var tileViews: [[TileView]] = []
+    let (numRows, numColumns): (Int, Int)
+    
+    init(numRows: Int, numColumns: Int) {
+        self.numRows = numRows
+        self.numColumns = numColumns
         super.init(frame: .zero)
         self.setupView()
     }
@@ -44,7 +45,7 @@ class GridView: UIView {
         gridView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         // Number of attempts
-        for _ in 0 ..< self.kNumberOfAttempts {
+        for _ in 0 ..< self.numRows {
             
             let tileRow = UIStackView()
             tileRow.axis = .horizontal
@@ -54,7 +55,7 @@ class GridView: UIView {
             var tileViews: [TileView] = []
             
             // Number of characters per attempt
-            for _ in 0 ..< self.kCharactersPerAttempt {
+            for _ in 0 ..< self.numColumns {
                 let tileView = TileView()
                 tileRow.addArrangedSubview(tileView)
                 tileViews.append(tileView)
@@ -121,7 +122,7 @@ class GridView: UIView {
                                     
                                 } else {
                                     self.activeAttempt += 1
-                                    if self.activeAttempt == self.kNumberOfAttempts {
+                                    if self.activeAttempt == self.numRows {
                                         print("LOSE")
                                         self.gameState = .lose
                                     }

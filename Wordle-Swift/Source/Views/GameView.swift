@@ -38,7 +38,7 @@ class GameView: UIView {
         gridCenterView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gridCenterView.bottomAnchor.constraint(equalTo: keyboardView.topAnchor, constant: -20).isActive = true
         
-        let gridView = GridView()
+        let gridView = GridView(numRows: Game.instance.numberOfAttempts, numColumns: Game.instance.correctWord.count)
         gridView.delegate = self
         gridCenterView.addSubview(gridView)
         gridView.translatesAutoresizingMaskIntoConstraints = false
