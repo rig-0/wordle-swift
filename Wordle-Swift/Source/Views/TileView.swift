@@ -118,12 +118,17 @@ class TileView: UIView {
     }
     
     public func animateReveal(state: KeyState, completion: @escaping (() -> Void)) {
+        
+        // 1. Scale height to zero (setting to absolute zero causes immediate transform)
+        // We want transform scale here because we want the UILabel to "squeeze"
         UIView.animate(withDuration: 0.2, animations: {
-            self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 0.001);
+            self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 0.001)
         }, completion: { finished in
+            
+            // 2. Update key state and animate back to identity
             self.state = state
             UIView.animate(withDuration: 0.15, animations: {
-                self.wrapperView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                self.wrapperView.transform = CGAffineTransformIdentity
             }, completion: { finished in
                 completion()
             })
@@ -131,11 +136,14 @@ class TileView: UIView {
     }
     
     public func animateSolve(completion: @escaping (() -> Void)) {
-        let offset = 30.0
-        self.wrapperVerticalConstraint.constant = -offset
+        
+        // 1. Big vertical offset (jump)
+        self.wrapperVerticalConstraint.constant = -30
         UIView.animate(withDuration: 0.2, animations: {
             self.layoutIfNeeded()
         }, completion: { finished in
+            
+            // 2. Drop it back down with a bounce using spring animation
             self.wrapperVerticalConstraint.constant = 0
             UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 20, animations: {
                 self.layoutIfNeeded()
@@ -145,19 +153,22 @@ class TileView: UIView {
         })
     }
     
-    public func animateShake() {
+    public func animateError() {
         let duration = 0.05
         let offset = 3.0
-        self.animate(offset: -offset/2, duration: duration) {
-            self.animate(offset: offset/2, duration: duration) {
-                self.animate(offset: -offset/2, duration: duration) {
-                    self.animate(offset: offset, duration: duration) {
-                        self.animate(offset: -offset, duration: duration) {
-                            self.animate(offset: offset, duration: duration) {
-                                self.animate(offset: -offset/2, duration: duration) {
-                                    self.animate(offset: offset/2, duration: duration) {
-                                        self.animate(offset: -offset/2, duration: duration * 1.5) {
-                                            self.animate(offset: 0, duration: duration * 1.5) {
+        
+        // Animate horizontal offset back and forth quickly
+        // Offset is halved at beginning and end to create slight bounce effect
+        self.animateHorizontal(offset: -offset/2, duration: duration) {
+            self.animateHorizontal(offset: offset/2, duration: duration) {
+                self.animateHorizontal(offset: -offset/2, duration: duration) {
+                    self.animateHorizontal(offset: offset, duration: duration) {
+                        self.animateHorizontal(offset: -offset, duration: duration) {
+                            self.animateHorizontal(offset: offset, duration: duration) {
+                                self.animateHorizontal(offset: -offset/2, duration: duration) {
+                                    self.animateHorizontal(offset: offset/2, duration: duration) {
+                                        self.animateHorizontal(offset: -offset/2, duration: duration * 1.5) {
+                                            self.animateHorizontal(offset: 0, duration: duration * 1.5) {
                                             }
                                         }
                                     }
@@ -170,7 +181,7 @@ class TileView: UIView {
         }
     }
     
-    private func animate(offset: CGFloat, duration: CGFloat, completion: @escaping (() -> Void)) {
+    private func animateHorizontal(offset: CGFloat, duration: CGFloat, completion: @escaping (() -> Void)) {
         self.wrapperHorizontalConstraint.constant = offset
         UIView.animate(withDuration: duration, animations: {
             self.layoutIfNeeded()

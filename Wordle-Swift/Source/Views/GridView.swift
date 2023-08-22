@@ -149,7 +149,7 @@ class GridView: UIView {
     
     private func animateActiveAttemptRowWithError() {
         for tile in self.tileViews[self.activeAttempt] {
-            tile.animateShake()
+            tile.animateError()
         }
     }
     
