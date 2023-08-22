@@ -19,6 +19,10 @@ class GridView: UIView {
     let (numRows, numColumns): (Int, Int)
     var activeAttempt = 0
 
+    var currentWordAttempt: String {
+        self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
+    }
+    
     init(game: Game) {
         self.game = game
         self.numRows = game.numberOfAttempts
@@ -75,7 +79,7 @@ class GridView: UIView {
             let lastTile = self.tileViews[self.activeAttempt].last
             if lastTile?.key != nil {
                 
-                guard isAttemptValid() else {
+                guard self.game.isValid(attemptedWord: self.currentWordAttempt) else {
                     self.animateActiveAttemptRowWithError()
                     self.delegate?.shouldPresentToast(type: .notInWordList)
                     return
@@ -88,7 +92,7 @@ class GridView: UIView {
                     // Will update keyboard key states
                     self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
                     
-                    if self.isAttemptCorrect() {
+                    if self.game.isCorrect(attemptedWord: self.currentWordAttempt) {
                         self.game.gameState = .paused
                         self.presentWinToast()
                         self.animateSolve(completion: {
@@ -175,15 +179,5 @@ class GridView: UIView {
         for tile in self.tileViews[self.activeAttempt] {
             tile.animateError()
         }
-    }
-    
-    private func isAttemptValid() -> Bool {
-        let attemptWord = self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
-        return self.game.wordList.isValid(attemptWord)
-    }
-    
-    private func isAttemptCorrect() -> Bool {
-        let attemptWord = self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
-        return attemptWord == self.game.correctWord
     }
 }

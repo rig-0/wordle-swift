@@ -116,5 +116,13 @@ class Game {
         
         return keyStates
     }
+    
+    public func isValid(attemptedWord: String) -> Bool {
+        return self.wordList.isValid(attemptedWord)
+    }
+    
+    public func isCorrect(attemptedWord: String) -> Bool {
+        return attemptedWord == self.correctWord
+    }
 }
 
