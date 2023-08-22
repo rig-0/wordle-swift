@@ -9,4 +9,5 @@ enum GameState {
     case playing
     case win
     case lose
+    case paused
 }

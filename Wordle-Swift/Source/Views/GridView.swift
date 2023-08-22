@@ -14,12 +14,10 @@ class GridView: UIView {
     
     public weak var delegate: GridViewDelegate?
     
-    var activeAttempt = 0
-    var gameState: GameState = .playing
-    
     var tileViews: [[TileView]] = []
     let (numRows, numColumns): (Int, Int)
-    
+    var activeAttempt = 0
+
     init(numRows: Int, numColumns: Int) {
         self.numRows = numRows
         self.numColumns = numColumns
@@ -66,7 +64,7 @@ class GridView: UIView {
     }
     
     public func input(key: Key) {
-        guard self.gameState == .playing else { return }
+        guard Game.instance.gameState == .playing else { return }
         
         if key == .DELETE {
             for tile in self.tileViews[self.activeAttempt].reversed() {
@@ -89,15 +87,21 @@ class GridView: UIView {
                 
                 let tileStates = determineKeyPlacementForAttempt()
                 
+                Game.instance.gameState = .paused
+                
                 let currentActiveAttemptIndex = self.activeAttempt
                 for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
                     DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
                         self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: tileStates[i], completion: {
                             if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
                                 
+                                Game.instance.gameState = .playing
+                                
                                 self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
                                 
                                 if self.isAttemptCorrect() {
+                                    
+                                    Game.instance.gameState = .paused
                                     
                                     switch currentActiveAttemptIndex {
                                     case 0:  self.delegate?.shouldPresentToast(type: .winGenius)
@@ -114,7 +118,7 @@ class GridView: UIView {
                                             self.tileViews[currentActiveAttemptIndex][i].animateSolve(completion: {
                                                 if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
                                                     print("WIN")
-                                                    self.gameState = .win
+                                                    Game.instance.gameState = .win
                                                 }
                                             })
                                         })
@@ -124,7 +128,7 @@ class GridView: UIView {
                                     self.activeAttempt += 1
                                     if self.activeAttempt == self.numRows {
                                         print("LOSE")
-                                        self.gameState = .lose
+                                        Game.instance.gameState = .lose
                                     }
                                 }
                             }
