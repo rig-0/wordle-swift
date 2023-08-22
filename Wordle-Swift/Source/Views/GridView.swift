@@ -5,21 +5,14 @@
 
 import UIKit
 
-protocol GridViewDelegate: AnyObject {
-    func didCompleteAttempt(tileViews: [[TileView]])
-    func shouldPresentToast(type: ToastItemType)
-}
-
 class GridView: UIView {
-    
-    public weak var delegate: GridViewDelegate?
     
     var game: Game!
     var tileViews: [[TileView]] = []
     let (numRows, numColumns): (Int, Int)
     var activeAttempt = 0
 
-    var currentWordAttempt: String {
+    public var currentWordAttempt: String {
         self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
     }
     
@@ -69,54 +62,6 @@ class GridView: UIView {
         }
     }
     
-    public func input(key: Key) {
-        guard self.game.gameState == .playing else { return }
-        
-        if key == .DELETE {
-            self.deleteLast()
-        }
-        else if key == .ENTER {
-            let lastTile = self.tileViews[self.activeAttempt].last
-            if lastTile?.key != nil {
-                
-                guard self.game.isValid(attemptedWord: self.currentWordAttempt) else {
-                    self.animateActiveAttemptRowWithError()
-                    self.delegate?.shouldPresentToast(type: .notInWordList)
-                    return
-                }
-
-                self.game.gameState = .paused
-                self.animateReveal(completion: {
-                    self.game.gameState = .playing
-                    
-                    // Will update keyboard key states
-                    self.delegate?.didCompleteAttempt(tileViews: self.tileViews)
-                    
-                    if self.game.isCorrect(attemptedWord: self.currentWordAttempt) {
-                        self.game.gameState = .paused
-                        self.presentWinToast()
-                        self.animateSolve(completion: {
-                            self.game.gameState = .win
-                        })
-                                                
-                    } else {
-                        self.activeAttempt += 1
-                        if self.activeAttempt == self.numRows {
-                            self.game.gameState = .lose
-                        }
-                    }
-                })
-                
-            } else {
-                self.animateActiveAttemptRowWithError()
-                self.delegate?.shouldPresentToast(type: .notEnoughLetters)
-            }
-        }
-        else {
-            self.append(key: key)
-        }
-    }
-    
     public func deleteLast() {
         for tile in self.tileViews[self.activeAttempt].reversed() {
             if tile.key != nil {
@@ -135,13 +80,11 @@ class GridView: UIView {
         }
     }
     
-    private func animateReveal(completion: @escaping (() -> Void)) {
-        let attempt = self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
-        let tileStates = game.tileKeyStates(with: attempt)
+    public func animateReveal(keyStates: [KeyState], completion: @escaping (() -> Void)) {
         let currentActiveAttemptIndex = self.activeAttempt
         for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
             DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
-                self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: tileStates[i], completion: {
+                self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: keyStates[i], completion: {
                     if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
                         completion()
                     }
@@ -150,7 +93,7 @@ class GridView: UIView {
         }
     }
     
-    private func animateSolve(completion: @escaping (() -> Void)) {
+    public func animateSolve(completion: @escaping (() -> Void)) {
         let currentActiveAttemptIndex = self.activeAttempt
         for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
             let delay = i > 0 ? 0.05 : 0
@@ -164,18 +107,7 @@ class GridView: UIView {
         }
     }
     
-    private func presentWinToast() {
-        switch self.activeAttempt {
-        case 0:  self.delegate?.shouldPresentToast(type: .winGenius)
-        case 1:  self.delegate?.shouldPresentToast(type: .winMagnificent)
-        case 2:  self.delegate?.shouldPresentToast(type: .winImpressive)
-        case 3:  self.delegate?.shouldPresentToast(type: .winSplendid)
-        case 4:  self.delegate?.shouldPresentToast(type: .winGreat)
-        default: self.delegate?.shouldPresentToast(type: .winPhew)
-        }
-    }
-    
-    private func animateActiveAttemptRowWithError() {
+    public func animateActiveAttemptRowWithError() {
         for tile in self.tileViews[self.activeAttempt] {
             tile.animateError()
         }
