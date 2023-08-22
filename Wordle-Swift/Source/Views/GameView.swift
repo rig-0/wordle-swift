@@ -7,12 +7,14 @@ import UIKit
 
 class GameView: UIView {
     
+    private var game: Game!
     private var gridView: GridView!
     private var keyboardView: KeyboardView!
     private var toastStackView: ToastStackView!
     
-    init() {
+    init(game: Game) {
         super.init(frame: .zero)
+        self.game = game        
         self.setupView()
     }
     
@@ -38,7 +40,7 @@ class GameView: UIView {
         gridCenterView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         gridCenterView.bottomAnchor.constraint(equalTo: keyboardView.topAnchor, constant: -20).isActive = true
         
-        let gridView = GridView(numRows: Game.instance.numberOfAttempts, numColumns: Game.instance.correctWord.count)
+        let gridView = GridView(numRows: self.game.numberOfAttempts, numColumns: self.game.correctWord.count)
         gridView.delegate = self
         gridCenterView.addSubview(gridView)
         gridView.translatesAutoresizingMaskIntoConstraints = false
@@ -66,7 +68,7 @@ extension GameView: KeyboardViewDelegate {
 
 extension GameView: GridViewDelegate {
     func didCompleteAttempt(tileViews: [[TileView]]) {
-        let keyStates = Game.instance.keyboardKeyStates(with: tileViews)
+        let keyStates = self.game.keyboardKeyStates(with: tileViews)
         self.keyboardView.update(keyStates: keyStates)
     }
     

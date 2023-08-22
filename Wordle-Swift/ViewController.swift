@@ -9,7 +9,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        let game = Game()
+        game.start()
+
         let headerView = HeaderView()
         self.view.addSubview(headerView)
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,11 +20,8 @@ class ViewController: UIViewController {
         headerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
         headerView.centerXAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         headerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-    
-        // Start Game Instance
-        let _ = Game.instance.start()
-    
-        let gameView = GameView()
+        
+        let gameView = GameView(game: game)
         self.view.addSubview(gameView)
         gameView.translatesAutoresizingMaskIntoConstraints = false
         gameView.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 20).isActive = true
