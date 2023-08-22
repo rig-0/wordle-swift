@@ -7,7 +7,6 @@ import UIKit
 
 class GridView: UIView {
     
-    var game: Game!
     var tileViews: [[TileView]] = []
     let (numRows, numColumns): (Int, Int)
     var activeAttempt = 0
@@ -17,7 +16,6 @@ class GridView: UIView {
     }
     
     init(game: Game) {
-        self.game = game
         self.numRows = game.numberOfAttempts
         self.numColumns = game.correctWord.count
         super.init(frame: .zero)
