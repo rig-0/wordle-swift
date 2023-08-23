@@ -33,6 +33,7 @@
 		C78018922A870E0B00E59E0D /* Wordle_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */; };
 		C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */; };
 		C7B571EE2A95B41F003FB283 /* GameStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */; };
+		C7B571F02A95CB70003FB283 /* GridRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571EF2A95CB70003FB283 /* GridRowView.swift */; };
 		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
 		C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
 		C7F9FE2B2A8EF1DC00B08E00 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */; };
@@ -89,6 +90,7 @@
 		C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITests.swift; sourceTree = "<group>"; };
 		C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateViewModel.swift; sourceTree = "<group>"; };
+		C7B571EF2A95CB70003FB283 /* GridRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridRowView.swift; sourceTree = "<group>"; };
 		C7CCB1E32A8C572E0088638D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C7CCB1E52A8C83050088638D /* ToastStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStackView.swift; sourceTree = "<group>"; };
 		C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				C72776492A8731BF00BA1ED4 /* TileView.swift */,
 				C7F9FE2F2A8EF35000B08E00 /* ToastItemView.swift */,
 				C7CCB1E52A8C83050088638D /* ToastStackView.swift */,
+				C7B571EF2A95CB70003FB283 /* GridRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				C72776442A8714F900BA1ED4 /* Key.swift in Sources */,
 				C727765C2A89E70F00BA1ED4 /* GameState.swift in Sources */,
 				C72776562A883CEA00BA1ED4 /* KeyView.swift in Sources */,
+				C7B571F02A95CB70003FB283 /* GridRowView.swift in Sources */,
 				C727764F2A88149B00BA1ED4 /* KeyState.swift in Sources */,
 				C72776542A8839BA00BA1ED4 /* KeyboardView.swift in Sources */,
 				C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */,

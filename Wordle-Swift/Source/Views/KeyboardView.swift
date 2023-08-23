@@ -20,7 +20,7 @@ class KeyboardView: UIView {
         [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
     ]
     
-    private let kSpacingBetweenKeys = 5.0
+    private let kSpacing = 5.0
     private var keyViews: [KeyView] = []
     
     init() {
@@ -38,17 +38,16 @@ class KeyboardView: UIView {
         // Determine standard key size, assume first row is all standard characters
         let keysPerRow = rows.first?.count ?? 0
         let availableWidth: CGFloat = self.frame.width
-        let widthWithouthSpacing = availableWidth - CGFloat(kSpacingBetweenKeys * CGFloat(keysPerRow - 1))
+        let widthWithouthSpacing = availableWidth - CGFloat(self.kSpacing * CGFloat(keysPerRow - 1))
         let standardKeyWidth = widthWithouthSpacing / CGFloat(keysPerRow)
         self.keyViews.forEach { $0.updateKeySizeWithStandardWidth(standardKeyWidth) }
     }
     
-    func setupView() {
+    private func setupView() {
         
-        // Primary grid view that contains all tiles
         let gridView = UIStackView()
         gridView.axis = .vertical
-        gridView.spacing = self.kSpacingBetweenKeys
+        gridView.spacing = self.kSpacing
         self.addSubview(gridView)
         gridView.translatesAutoresizingMaskIntoConstraints = false
         gridView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -60,7 +59,7 @@ class KeyboardView: UIView {
         for i in 0 ..< self.rows.count {
             let rowView = UIStackView()
             rowView.axis = .horizontal
-            rowView.spacing = self.kSpacingBetweenKeys
+            rowView.spacing = self.kSpacing
             gridView.addArrangedSubview(rowView)
             
             // Add KeyView for each key in row

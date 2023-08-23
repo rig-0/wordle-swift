@@ -16,7 +16,7 @@ class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    private func setupView() {
         let labelView = UILabel()
         labelView.font = UIFont.App.wordleFont
         labelView.text = "Wordle // Swift"

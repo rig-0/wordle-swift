@@ -7,23 +7,24 @@ import UIKit
 
 class GridView: UIView {
     
-    private var tileViews: [[TileView]] = []
-
-    init(game: Game) {
+    private var rows: [GridRowView] = []
+    private let kSpacing = 5.0
+    
+    init(numRows: Int, numColumns: Int) {
         super.init(frame: .zero)
-        self.setupView(numRows: game.numberOfAttempts, numColumns: game.wordLength)
+        self.setupView(numRows: numRows, numColumns: numColumns)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView(numRows: Int, numColumns: Int) {
+    private func setupView(numRows: Int, numColumns: Int) {
         
         // Primary grid view that contains all tiles
         let gridView = UIStackView()
         gridView.axis = .vertical
-        gridView.spacing = 5
+        gridView.spacing = self.kSpacing
         self.addSubview(gridView)
         gridView.translatesAutoresizingMaskIntoConstraints = false
         gridView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
@@ -33,71 +34,29 @@ class GridView: UIView {
         
         // Number of attempts
         for _ in 0 ..< numRows {
-            
-            let tileRow = UIStackView()
-            tileRow.axis = .horizontal
-            tileRow.spacing = 5
+            let tileRow = GridRowView(numColumns: numColumns)
             gridView.addArrangedSubview(tileRow)
-            
-            var tileViews: [TileView] = []
-            
-            // Number of characters per attempt
-            for _ in 0 ..< numColumns {
-                let tileView = TileView()
-                tileRow.addArrangedSubview(tileView)
-                tileViews.append(tileView)
-            }
-            
-            self.tileViews.append(tileViews)
+            self.rows.append(tileRow)
         }
     }
     
     public func deleteLast(attemptIndex: Int) {
-        for tile in self.tileViews[attemptIndex].reversed() {
-            if tile.key != nil {
-                tile.key = nil
-                return
-            }
-        }
+        self.rows[attemptIndex].deleteLast()
     }
     
     public func append(key: Key, attemptIndex: Int) {
-        for tile in self.tileViews[attemptIndex] {
-            if tile.key == nil {
-                tile.animateInput(key: key, completion: {})
-                return
-            }
-        }
+        self.rows[attemptIndex].append(key: key)
     }
     
     public func animateReveal(keyStates: [(Key, KeyState)], attemptIndex: Int, completion: @escaping (() -> Void)) {
-        for i in 0 ..< self.tileViews[attemptIndex].count {
-            DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
-                self.tileViews[attemptIndex][i].animateReveal(state: keyStates[i].1, completion: {
-                    if i == (self.tileViews[attemptIndex].count - 1) {
-                        completion()
-                    }
-                })
-            })
-        }
+        self.rows[attemptIndex].animateReveal(keyStates: keyStates, completion: completion)
     }
     
     public func animateSolve(attemptIndex: Int, completion: @escaping (() -> Void)) {
-        for i in 0 ..< self.tileViews[attemptIndex].count {
-            let delay = i > 0 ? 0.05 : 0
-            DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.10) + delay + 0.3, execute: {
-                self.tileViews[attemptIndex][i].animateSolve(completion: {
-                    if i == (self.tileViews[attemptIndex].count - 1) {
-                        completion()
-                    }
-                })
-            })
-        }
+        self.rows[attemptIndex].animateSolve(completion: completion)
     }
     
-    public func animateActiveAttemptRowWithError(attemptIndex: Int) {
-        for tile in self.tileViews[attemptIndex] {
-            tile.animateError()
-        }
+    public func animateError(attemptIndex: Int) {
+        self.rows[attemptIndex].animateError()
     }
 }

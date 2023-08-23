@@ -59,7 +59,7 @@ class GameStateViewModel {
             guard self.game.isValid(attemptedWord: attemptedWord) else {
                 
                 // Invalid - Word is not in word list
-                self.gridView.animateActiveAttemptRowWithError(attemptIndex: attemptIndex)
+                self.gridView.animateError(attemptIndex: attemptIndex)
                 self.toastStackView.addToastItem(type: .notInWordList)
                 return
             }
@@ -98,7 +98,7 @@ class GameStateViewModel {
         }
         else {
             // Incomplete word attempt
-            self.gridView.animateActiveAttemptRowWithError(attemptIndex: attemptIndex)
+            self.gridView.animateError(attemptIndex: attemptIndex)
             self.toastStackView.addToastItem(type: .notEnoughLetters)
         }
     }

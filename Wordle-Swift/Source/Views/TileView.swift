@@ -89,10 +89,8 @@ class TileView: UIView {
             return .white
         }
     }
-}
 
-// Animation Methods
-extension TileView {
+    // MARK: Animation Methods
     
     public func animateInput(key: Key, completion: @escaping (() -> Void)) {
         
