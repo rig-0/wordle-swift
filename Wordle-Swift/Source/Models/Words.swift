@@ -37,6 +37,6 @@ class Words {
     }
     
     private func UITesting() -> String? {
-        return ProcessInfo.processInfo.environment["correctWord"] //ProcessInfo.processInfo.arguments.contains("UI-TESTING")
+        return ProcessInfo.processInfo.environment["correctWord"]
     }
 }
