@@ -8,25 +8,18 @@ import UIKit
 class GridView: UIView {
     
     var tileViews: [[TileView]] = []
-    let (numRows, numColumns): (Int, Int)
     var activeAttempt = 0
 
-    public var currentWordAttempt: String {
-        self.tileViews[self.activeAttempt].compactMap({ $0.key?.rawValue }).joined()
-    }
-    
     init(game: Game) {
-        self.numRows = game.numberOfAttempts
-        self.numColumns = game.wordLength
         super.init(frame: .zero)
-        self.setupView()
+        self.setupView(numRows: game.numberOfAttempts, numColumns: game.wordLength)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    func setupView(numRows: Int, numColumns: Int) {
         
         // Primary grid view that contains all tiles
         let gridView = UIStackView()
@@ -40,7 +33,7 @@ class GridView: UIView {
         gridView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         
         // Number of attempts
-        for _ in 0 ..< self.numRows {
+        for _ in 0 ..< numRows {
             
             let tileRow = UIStackView()
             tileRow.axis = .horizontal
@@ -50,7 +43,7 @@ class GridView: UIView {
             var tileViews: [TileView] = []
             
             // Number of characters per attempt
-            for _ in 0 ..< self.numColumns {
+            for _ in 0 ..< numColumns {
                 let tileView = TileView()
                 tileRow.addArrangedSubview(tileView)
                 tileViews.append(tileView)
@@ -78,11 +71,11 @@ class GridView: UIView {
         }
     }
     
-    public func animateReveal(keyStates: [KeyState], completion: @escaping (() -> Void)) {
+    public func animateReveal(keyStates: [(Key, KeyState)], completion: @escaping (() -> Void)) {
         let currentActiveAttemptIndex = self.activeAttempt
         for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
             DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
-                self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: keyStates[i], completion: {
+                self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: keyStates[i].1, completion: {
                     if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
                         completion()
                     }

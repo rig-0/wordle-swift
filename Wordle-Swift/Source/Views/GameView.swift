@@ -74,9 +74,11 @@ extension GameView: KeyboardViewDelegate {
 class GameStateViewModel {
     
     private var game: Game!
+    private var gameState: GameState = .playing
     private var gridView: GridView!
     private var keyboardView: KeyboardView!
     private var toastStackView: ToastStackView!
+    private var storedAttempts: [[(Key, KeyState)]] = [[]]
     
     init(game: Game,
          gridView: GridView,
@@ -89,113 +91,127 @@ class GameStateViewModel {
     }
     
     public func input(key: Key) {
-        guard self.game.gameState == .playing else { return }
-        
-        if key == .DELETE {
+        guard self.gameState == .playing else { return }
+        guard key != .__ else { return }
+        if key == .ENTER {
+            self.inputEnter()
+        } else if key == .DELETE {
+            guard let lastAttempt = self.storedAttempts.last else { return }
+            let deleted = lastAttempt.dropLast()
+            self.storedAttempts[self.storedAttempts.count - 1] = Array(deleted)
+            print(self.storedAttempts)
+            
             self.gridView.deleteLast()
-        }
-        else if key == .ENTER {
-
-            // 1. Determine if we have a complete word attempt
-            let currentWordAttempt = self.gridView.currentWordAttempt
-            if currentWordAttempt.count == self.game.wordLength {
-                
-                // 2. Determine if that word is valid,
-                guard self.game.isValid(attemptedWord: currentWordAttempt) else {
-                    
-                    // If invalid, animate row and present toast
-                    self.gridView.animateActiveAttemptRowWithError()
-                    self.shouldPresentToast(type: .notInWordList)
-                    return
-                }
-                
-                self.game.gameState = .paused
-                
-                // If word is valid
-                // Reveal with row animation
-                let keyStates = self.tileKeyStates(with: currentWordAttempt)
-                self.gridView.animateReveal(keyStates: keyStates, completion: {
-                    
-                    self.game.gameState = .playing
-                    
-                    // update keyboard key states
-                    let keyStates = self.keyboardKeyStates(with: self.gridView.tileViews)
-                    self.keyboardView.update(keyStates: keyStates)
-                    
-                    // 3. Determine if word is correct
-                    if self.game.isCorrect(attemptedWord: currentWordAttempt) {
-                        // Correct
-                        self.game.gameState = .paused
-                        self.presentWinToast()
-                        self.gridView.animateSolve(completion: {
-                            self.game.gameState = .win
-                        })
-                        
-                    } else {
-                        // Incorrect
-                        self.gridView.activeAttempt += 1
-                        if self.gridView.activeAttempt == self.game.numberOfAttempts {
-                            self.game.gameState = .lose
-                        }
-                    }
-                })
-            }
-            else {
-                // Incomplete word attempt
-                self.gridView.animateActiveAttemptRowWithError()
-                self.shouldPresentToast(type: .notEnoughLetters)
-            }
-        }
-        else {
+        } else {
+            guard var lastAttempt = self.storedAttempts.last else { return }
+            guard lastAttempt.count < (self.game.wordLength) else { return }
+            lastAttempt.append((key, .tbd))
+            self.storedAttempts[self.storedAttempts.count - 1] = lastAttempt
+            print(self.storedAttempts)
+            
             self.gridView.append(key: key)
         }
     }
     
-    public func presentWinToast() {
-        switch self.gridView.activeAttempt {
-        case 0:  self.shouldPresentToast(type: .winGenius)
-        case 1:  self.shouldPresentToast(type: .winMagnificent)
-        case 2:  self.shouldPresentToast(type: .winImpressive)
-        case 3:  self.shouldPresentToast(type: .winSplendid)
-        case 4:  self.shouldPresentToast(type: .winGreat)
-        default: self.shouldPresentToast(type: .winPhew)
+    public func inputEnter() {
+        guard self.gameState == .playing else { return }
+        let attemptedWord = self.storedAttempts.last?.compactMap({ $0.0.rawValue }).joined() ?? ""
+        let attemptIndex = self.storedAttempts.count
+        
+        // Determine if we have a complete word attempt
+        if attemptedWord.count == self.game.wordLength {
+                        
+            // Determine that the attemped word is valid
+            guard self.game.isValid(attemptedWord: attemptedWord) else {
+                
+                // If invalid, animate row and present toast
+                self.gridView.animateActiveAttemptRowWithError()
+                self.toastStackView.addToastItem(type: .notInWordList)
+                return
+            }
+            
+            // Determine tile states for attempted word
+            let keyStates = self.tileKeyStates(with: attemptedWord)
+            self.storedAttempts[self.storedAttempts.count - 1] = keyStates
+
+            self.gameState = .paused
+            
+            // If word is valid
+            // Reveal with row animation
+            self.gridView.animateReveal(keyStates: keyStates, completion: {
+                
+                self.gameState = .playing
+                
+                // update keyboard key states
+                let keyStates = self.keyboardKeyStates(with: self.storedAttempts)
+                self.keyboardView.update(keyStates: keyStates)
+                
+                // 3. Determine if word is correct
+                if self.game.isCorrect(attemptedWord: attemptedWord) {
+                    // Correct
+                    self.gameState = .paused
+                    self.presentWinToast()
+                    self.gridView.animateSolve(completion: {
+                        self.gameState = .win
+                    })
+                    
+                } else {
+                    // Incorrect
+                    if self.storedAttempts.count == self.game.numberOfAttempts {
+                        self.gameState = .lose
+                    } else {
+                        self.storedAttempts.append([])
+                    }
+                }
+            })
+        }
+        else {
+            // Incomplete word attempt
+            self.gridView.animateActiveAttemptRowWithError()
+            self.toastStackView.addToastItem(type: .notEnoughLetters)
         }
     }
-        
-    func shouldPresentToast(type: ToastItemType) {
-        self.toastStackView.addToastItem(type: type)
+    
+    public func presentWinToast() {
+        var toastType: ToastItemType = .winPhew
+        switch self.storedAttempts.count {
+        case 0:  toastType = .winGenius
+        case 1:  toastType = .winMagnificent
+        case 2:  toastType = .winImpressive
+        case 3:  toastType = .winSplendid
+        case 4:  toastType = .winGreat
+        default: toastType = .winPhew
+        }
+        self.toastStackView.addToastItem(type: toastType)
     }
     
-    public func keyboardKeyStates(with tileViews: [[TileView]]) -> [Key : KeyState] {
+    public func keyboardKeyStates(with storedAttempts: [[(Key, KeyState)]]) -> [Key : KeyState] {
         
         var keyStates: [Key : KeyState] = [:]
         for key in Key.allCases {
             keyStates[key] = .tbd
         }
         
-        let tileViews = tileViews.joined()
-        let absentTiles = tileViews.filter({ $0.state == .absent })
-        for tileView in absentTiles {
-            guard let key = tileView.key else { continue }
-            keyStates[key] = tileView.state
+        let storedAttempts = storedAttempts.joined()
+        let absentKeys = storedAttempts.filter({ $0.1 == .absent })
+        for item in absentKeys {
+            keyStates[item.0] = item.1
         }
         
-        let presentTiles = tileViews.filter({ $0.state == .present })
-        for tileView in presentTiles {
-            guard let key = tileView.key else { continue }
-            keyStates[key] = tileView.state
+        let presentKeys = storedAttempts.filter({ $0.1 == .present })
+        for item in presentKeys {
+            keyStates[item.0] = item.1
         }
         
-        let correctTiles = tileViews.filter({ $0.state == .correct })
-        for tileView in correctTiles {
-            guard let key = tileView.key else { continue }
-            keyStates[key] = tileView.state
+        let correctKeys = storedAttempts.filter({ $0.1 == .correct })
+        for item in correctKeys {
+            keyStates[item.0] = item.1
         }
         
         return keyStates
     }
     
-    public func tileKeyStates(with attemptedWord: String) -> [KeyState] {
+    public func tileKeyStates(with attemptedWord: String) -> [(Key, KeyState)] {
         /*
          ## Logic for checking our key placement per attempt
          
@@ -223,9 +239,10 @@ class GameStateViewModel {
          why it's important to check all correct placements first, and track our discard pile.
          */
         
-        var keyStates: [KeyState] = []
-        for _ in 0 ..< self.game.wordLength {
-            keyStates.append(.tbd)
+        var keyStates: [(Key, KeyState)] = []
+        for (_, letter) in Array(attemptedWord).enumerated() {
+            guard let key = Key(rawValue: String(letter).uppercased()) else { return [] }
+            keyStates.append((key, .tbd))
         }
 
         guard let correctWord = self.game.correctWord else { return keyStates }
@@ -234,7 +251,7 @@ class GameStateViewModel {
         
         for (i, letter) in Array(attemptedWord).enumerated() {
             if String(letter) == String(Array(correctWord)[i]) {
-                keyStates[i] = .correct
+                keyStates[i].1 = .correct
                 if let firstIndex = discardArray.firstIndex(of: letter) {
                     discardArray.remove(at: firstIndex)
                 }
@@ -242,17 +259,17 @@ class GameStateViewModel {
         }
         
         for (i, letter) in Array(attemptedWord).enumerated() {
-            guard keyStates[i] == .tbd else { continue }
+            guard keyStates[i].1 == .tbd else { continue }
             
             // How many instances of this letter appear in the correct word?
             let instanceCount = discardArray.filter({ String($0) == String(letter) }).count
             if instanceCount > 0 {
-                keyStates[i] = .present
+                keyStates[i].1 = .present
                 if let firstIndex = discardArray.firstIndex(of: letter) {
                     discardArray.remove(at: firstIndex)
                 }
             } else {
-                keyStates[i] = .absent
+                keyStates[i].1 = .absent
             }
         }
         
