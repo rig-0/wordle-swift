@@ -51,6 +51,41 @@ final class Wordle_SwiftUITests: XCTestCase {
         XCTAssertEqual(result, .completed)
     }
     
+    func testImpressiveSolve() throws {
+        
+        // Wait for keyboard to appear
+        guard element(key: .A).waitForExistence(timeout: 1) else {
+            XCTFail()
+            return
+        }
+        
+        element(key: .P).tap()
+        element(key: .A).tap()
+        element(key: .P).tap()
+        element(key: .E).tap()
+        element(key: .R).tap()
+        element(key: .ENTER).tap()
+        
+        Thread.sleep(forTimeInterval: 1)
+        
+        element(key: .A).tap()
+        element(key: .P).tap()
+        element(key: .P).tap()
+        element(key: .L).tap()
+        element(key: .E).tap()
+        element(key: .ENTER).tap()
+        
+        // Wait for Magnificent toast to appear
+        let expectation = expectation(
+            for: NSPredicate(format: "exists == true"),
+            evaluatedWith: app.staticTexts["Impressive"],
+            handler: .none
+        )
+
+        let result = XCTWaiter.wait(for: [expectation], timeout: 3.0)
+        XCTAssertEqual(result, .completed)
+    }
+    
     func testPhewSolve() throws {
         
         // Wait for keyboard to appear
