@@ -32,6 +32,7 @@
 		C780187D2A870E0B00E59E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C780187B2A870E0B00E59E0D /* LaunchScreen.storyboard */; };
 		C78018922A870E0B00E59E0D /* Wordle_SwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */; };
 		C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */; };
+		C7B571EE2A95B41F003FB283 /* GameStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */; };
 		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
 		C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
 		C7F9FE2B2A8EF1DC00B08E00 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */; };
@@ -87,6 +88,7 @@
 		C780188D2A870E0B00E59E0D /* Wordle-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Wordle-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018912A870E0B00E59E0D /* Wordle_SwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITests.swift; sourceTree = "<group>"; };
 		C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wordle_SwiftUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateViewModel.swift; sourceTree = "<group>"; };
 		C7CCB1E32A8C572E0088638D /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C7CCB1E52A8C83050088638D /* ToastStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastStackView.swift; sourceTree = "<group>"; };
 		C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -123,8 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				C72776502A88382F00BA1ED4 /* Extensions */,
-				C7F9FE292A8EF1CC00B08E00 /* Managers */,
 				C72776422A8714E600BA1ED4 /* Models */,
+				C7F9FE292A8EF1CC00B08E00 /* ViewModels */,
 				C727764B2A8731C300BA1ED4 /* Views */,
 			);
 			path = Source;
@@ -248,12 +250,13 @@
 			path = "Wordle-SwiftUITests";
 			sourceTree = "<group>";
 		};
-		C7F9FE292A8EF1CC00B08E00 /* Managers */ = {
+		C7F9FE292A8EF1CC00B08E00 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */,
+				C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */,
 			);
-			path = Managers;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		C7F9FE2C2A8EF2A800B08E00 /* JSON */ = {
@@ -417,6 +420,7 @@
 				C727764D2A8735F100BA1ED4 /* GridView.swift in Sources */,
 				C72776662A8C2A0100BA1ED4 /* String+Offset.swift in Sources */,
 				C72776582A88412D00BA1ED4 /* UIFont+AppFonts.swift in Sources */,
+				C7B571EE2A95B41F003FB283 /* GameStateViewModel.swift in Sources */,
 				C727765A2A89A80600BA1ED4 /* GameView.swift in Sources */,
 				C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */,
 			);

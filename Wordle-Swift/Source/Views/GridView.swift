@@ -8,7 +8,7 @@ import UIKit
 class GridView: UIView {
     
     var tileViews: [[TileView]] = []
-    var activeAttempt = 0
+//    var activeAttempt = 0
 
     init(game: Game) {
         super.init(frame: .zero)
@@ -53,8 +53,8 @@ class GridView: UIView {
         }
     }
     
-    public func deleteLast() {
-        for tile in self.tileViews[self.activeAttempt].reversed() {
+    public func deleteLast(attemptIndex: Int) {
+        for tile in self.tileViews[attemptIndex].reversed() {
             if tile.key != nil {
                 tile.key = nil
                 return
@@ -62,8 +62,8 @@ class GridView: UIView {
         }
     }
     
-    public func append(key: Key) {
-        for tile in self.tileViews[self.activeAttempt] {
+    public func append(key: Key, attemptIndex: Int) {
+        for tile in self.tileViews[attemptIndex] {
             if tile.key == nil {
                 tile.animateInput(key: key, completion: {})
                 return
@@ -71,12 +71,11 @@ class GridView: UIView {
         }
     }
     
-    public func animateReveal(keyStates: [(Key, KeyState)], completion: @escaping (() -> Void)) {
-        let currentActiveAttemptIndex = self.activeAttempt
-        for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
+    public func animateReveal(keyStates: [(Key, KeyState)], attemptIndex: Int, completion: @escaping (() -> Void)) {
+        for i in 0 ..< self.tileViews[attemptIndex].count {
             DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.2), execute: {
-                self.tileViews[currentActiveAttemptIndex][i].animateReveal(state: keyStates[i].1, completion: {
-                    if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
+                self.tileViews[attemptIndex][i].animateReveal(state: keyStates[i].1, completion: {
+                    if i == (self.tileViews[attemptIndex].count - 1) {
                         completion()
                     }
                 })
@@ -84,13 +83,12 @@ class GridView: UIView {
         }
     }
     
-    public func animateSolve(completion: @escaping (() -> Void)) {
-        let currentActiveAttemptIndex = self.activeAttempt
-        for i in 0 ..< self.tileViews[currentActiveAttemptIndex].count {
+    public func animateSolve(attemptIndex: Int, completion: @escaping (() -> Void)) {
+        for i in 0 ..< self.tileViews[attemptIndex].count {
             let delay = i > 0 ? 0.05 : 0
             DispatchQueue.main.asyncAfter(deadline: .now() + (Double(i) * 0.10) + delay + 0.3, execute: {
-                self.tileViews[currentActiveAttemptIndex][i].animateSolve(completion: {
-                    if i == (self.tileViews[currentActiveAttemptIndex].count - 1) {
+                self.tileViews[attemptIndex][i].animateSolve(completion: {
+                    if i == (self.tileViews[attemptIndex].count - 1) {
                         completion()
                     }
                 })
@@ -98,8 +96,8 @@ class GridView: UIView {
         }
     }
     
-    public func animateActiveAttemptRowWithError() {
-        for tile in self.tileViews[self.activeAttempt] {
+    public func animateActiveAttemptRowWithError(attemptIndex: Int) {
+        for tile in self.tileViews[attemptIndex] {
             tile.animateError()
         }
     }
