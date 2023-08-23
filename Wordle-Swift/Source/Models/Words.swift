@@ -18,8 +18,17 @@ struct WordList: Decodable {
     }
 }
 
-class WordListParser {
-    static func fetch() -> WordList {
+class Words {
+    
+    lazy var wordList: WordList = {
         return Bundle.main.decode(WordList.self, from: "word_list.json")
+    }()
+
+    public var randomWord: String {
+        return self.wordList.starters.randomElement()?.uppercased() ?? ""
+    }
+    
+    public func isValid(_ word: String) -> Bool {
+        return self.wordList.isValid(word)
     }
 }

@@ -17,7 +17,7 @@ class GridView: UIView {
     
     init(game: Game) {
         self.numRows = game.numberOfAttempts
-        self.numColumns = game.correctWord.count
+        self.numColumns = game.wordLength
         super.init(frame: .zero)
         self.setupView()
     }
