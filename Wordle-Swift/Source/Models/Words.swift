@@ -25,10 +25,18 @@ class Words {
     }()
 
     public var randomWord: String {
+        if let testWord = UITesting() {
+            return testWord
+        }
+        
         return self.wordList.starters.randomElement()?.uppercased() ?? ""
     }
     
     public func isValid(_ word: String) -> Bool {
         return self.wordList.isValid(word)
+    }
+    
+    private func UITesting() -> String? {
+        return ProcessInfo.processInfo.environment["correctWord"] //ProcessInfo.processInfo.arguments.contains("UI-TESTING")
     }
 }
