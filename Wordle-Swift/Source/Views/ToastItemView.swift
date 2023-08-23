@@ -7,19 +7,16 @@ import UIKit
 
 class ToastItemView: UIView {
     
-    var type: ToastItemType
-    
     init(type: ToastItemType) {
-        self.type = type
         super.init(frame: .zero)
-        self.setupView()
+        self.setupView(type: type)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupView() {
+    private func setupView(type: ToastItemType) {
         self.backgroundColor = .black
         self.layer.cornerRadius = 3
         

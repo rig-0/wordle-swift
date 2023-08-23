@@ -13,16 +13,15 @@ class KeyboardView: UIView {
     
     public weak var delegate: KeyboardViewDelegate?
     
-    let rows: [[Key]] =
+    private let rows: [[Key]] =
     [
         [.Q, .W, .E, .R, .T, .Y, .U, .I, .O, .P ],
         [.__, .A, .S, .D, .F, .G, .H, .J, .K, .L, .__],
         [.ENTER, .Z, .X, .C, .V, .B, .N, .M, .DELETE]
     ]
     
-    let kSpacingBetweenKeys = 5.0
-    
-    var keyViews: [KeyView] = []
+    private let kSpacingBetweenKeys = 5.0
+    private var keyViews: [KeyView] = []
     
     init() {
         super.init(frame: .zero)

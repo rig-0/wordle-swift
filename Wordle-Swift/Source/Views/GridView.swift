@@ -7,8 +7,7 @@ import UIKit
 
 class GridView: UIView {
     
-    var tileViews: [[TileView]] = []
-//    var activeAttempt = 0
+    private var tileViews: [[TileView]] = []
 
     init(game: Game) {
         super.init(frame: .zero)
