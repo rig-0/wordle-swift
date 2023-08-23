@@ -54,7 +54,7 @@ class GameStateViewModel {
         
         // Determine if we have a complete word attempt
         if attemptedWord.count == self.game.wordLength {
-                        
+            
             // Determine that the attemped word is valid
             guard self.game.isValid(attemptedWord: attemptedWord) else {
                 
@@ -104,7 +104,7 @@ class GameStateViewModel {
     }
     
     public func presentWinToast() {
-        var toastType: ToastItemType = .winPhew
+        var toastType: ToastItemType
         switch self.storedAttempts.count {
         case 0:  toastType = .winGenius
         case 1:  toastType = .winMagnificent
@@ -175,9 +175,9 @@ class GameStateViewModel {
             guard let key = Key(rawValue: String(letter).uppercased()) else { return [] }
             keyStates.append((key, .tbd))
         }
-
+        
         guard let correctWord = self.game.correctWord else { return keyStates }
-
+        
         var discardArray = Array(correctWord)
         
         for (i, letter) in Array(attemptedWord).enumerated() {

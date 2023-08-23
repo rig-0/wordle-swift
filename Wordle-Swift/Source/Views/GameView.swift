@@ -15,7 +15,7 @@ class GameView: UIView {
     
     init(game: Game) {
         super.init(frame: .zero)
-        self.game = game        
+        self.game = game
         self.setupView()
     }
     
@@ -58,10 +58,12 @@ class GameView: UIView {
         toastStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         self.toastStackView = toastStackView
         
-        self.gameStateViewModel = GameStateViewModel(game: self.game,
-                                                     gridView: self.gridView,
-                                                     keyboardView: self.keyboardView,
-                                                     toastStackView: self.toastStackView)
+        self.gameStateViewModel = GameStateViewModel(
+            game: self.game,
+            gridView: self.gridView,
+            keyboardView: self.keyboardView,
+            toastStackView: self.toastStackView
+        )
     }
 }
 
