@@ -158,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				C72776592A89A80600BA1ED4 /* GameView.swift */,
+				C7B571EF2A95CB70003FB283 /* GridRowView.swift */,
 				C727764C2A8735F100BA1ED4 /* GridView.swift */,
 				C7CCB1E32A8C572E0088638D /* HeaderView.swift */,
 				C72776532A8839BA00BA1ED4 /* KeyboardView.swift */,
@@ -165,7 +166,6 @@
 				C72776492A8731BF00BA1ED4 /* TileView.swift */,
 				C7F9FE2F2A8EF35000B08E00 /* ToastItemView.swift */,
 				C7CCB1E52A8C83050088638D /* ToastStackView.swift */,
-				C7B571EF2A95CB70003FB283 /* GridRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
