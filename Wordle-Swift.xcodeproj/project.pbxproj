@@ -34,6 +34,27 @@
 		C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */; };
 		C7B571EE2A95B41F003FB283 /* GameStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */; };
 		C7B571F02A95CB70003FB283 /* GridRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571EF2A95CB70003FB283 /* GridRowView.swift */; };
+		C7B571F22A95D035003FB283 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776592A89A80600BA1ED4 /* GameView.swift */; };
+		C7B571F32A95D04B003FB283 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776432A8714F900BA1ED4 /* Key.swift */; };
+		C7B571F42A95D09F003FB283 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765B2A89E70F00BA1ED4 /* GameState.swift */; };
+		C7B571F52A95D0A3003FB283 /* KeyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727764E2A88149B00BA1ED4 /* KeyState.swift */; };
+		C7B571F62A95D0A5003FB283 /* ToastItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2D2A8EF33C00B08E00 /* ToastItemType.swift */; };
+		C7B571F72A95D0A8003FB283 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765F2A8C09B500BA1ED4 /* Words.swift */; };
+		C7B571F92A95D0B5003FB283 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */; };
+		C7B571FA2A95D0B7003FB283 /* GameStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571ED2A95B41F003FB283 /* GameStateViewModel.swift */; };
+		C7B571FB2A95D0BC003FB283 /* GridRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B571EF2A95CB70003FB283 /* GridRowView.swift */; };
+		C7B571FC2A95D0C0003FB283 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727764C2A8735F100BA1ED4 /* GridView.swift */; };
+		C7B571FD2A95D0C0003FB283 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
+		C7B571FE2A95D0C0003FB283 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776532A8839BA00BA1ED4 /* KeyboardView.swift */; };
+		C7B571FF2A95D0C7003FB283 /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
+		C7B572002A95D0C7003FB283 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776552A883CEA00BA1ED4 /* KeyView.swift */; };
+		C7B572012A95D0C7003FB283 /* ToastItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2F2A8EF35000B08E00 /* ToastItemView.swift */; };
+		C7B572022A95D0C7003FB283 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776492A8731BF00BA1ED4 /* TileView.swift */; };
+		C7B572032A95D0D6003FB283 /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776512A88384000BA1ED4 /* UIColor+AppColors.swift */; };
+		C7B572042A95D0D6003FB283 /* Bundle+DecodeJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776632A8C0D4500BA1ED4 /* Bundle+DecodeJSON.swift */; };
+		C7B572052A95D0D6003FB283 /* UIImage+AppImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C727765D2A8C084600BA1ED4 /* UIImage+AppImages.swift */; };
+		C7B572062A95D0D6003FB283 /* String+Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776652A8C2A0100BA1ED4 /* String+Offset.swift */; };
+		C7B572072A95D0D6003FB283 /* UIFont+AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72776572A88412D00BA1ED4 /* UIFont+AppFonts.swift */; };
 		C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E32A8C572E0088638D /* HeaderView.swift */; };
 		C7CCB1E62A8C83050088638D /* ToastStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CCB1E52A8C83050088638D /* ToastStackView.swift */; };
 		C7F9FE2B2A8EF1DC00B08E00 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F9FE2A2A8EF1DC00B08E00 /* Game.swift */; };
@@ -450,8 +471,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7B572052A95D0D6003FB283 /* UIImage+AppImages.swift in Sources */,
+				C7B572032A95D0D6003FB283 /* UIColor+AppColors.swift in Sources */,
 				C78018922A870E0B00E59E0D /* Wordle_SwiftUITests.swift in Sources */,
+				C7B572072A95D0D6003FB283 /* UIFont+AppFonts.swift in Sources */,
+				C7B571FF2A95D0C7003FB283 /* ToastStackView.swift in Sources */,
+				C7B571F92A95D0B5003FB283 /* Game.swift in Sources */,
+				C7B571F62A95D0A5003FB283 /* ToastItemType.swift in Sources */,
+				C7B572022A95D0C7003FB283 /* TileView.swift in Sources */,
+				C7B571F52A95D0A3003FB283 /* KeyState.swift in Sources */,
+				C7B571F32A95D04B003FB283 /* Key.swift in Sources */,
+				C7B571FB2A95D0BC003FB283 /* GridRowView.swift in Sources */,
+				C7B571F42A95D09F003FB283 /* GameState.swift in Sources */,
+				C7B571F72A95D0A8003FB283 /* Words.swift in Sources */,
+				C7B571F22A95D035003FB283 /* GameView.swift in Sources */,
+				C7B572012A95D0C7003FB283 /* ToastItemView.swift in Sources */,
+				C7B572042A95D0D6003FB283 /* Bundle+DecodeJSON.swift in Sources */,
+				C7B571FE2A95D0C0003FB283 /* KeyboardView.swift in Sources */,
+				C7B571FA2A95D0B7003FB283 /* GameStateViewModel.swift in Sources */,
+				C7B572062A95D0D6003FB283 /* String+Offset.swift in Sources */,
+				C7B572002A95D0C7003FB283 /* KeyView.swift in Sources */,
+				C7B571FC2A95D0C0003FB283 /* GridView.swift in Sources */,
 				C78018942A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift in Sources */,
+				C7B571FD2A95D0C0003FB283 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

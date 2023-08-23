@@ -64,6 +64,7 @@ class KeyView: UIView {
         tapGesture.addTarget(self, action: #selector(didTapKey))
         self.addGestureRecognizer(tapGesture)
         
+        self.accessibilityLabel = "Key_" + (self.key?.rawValue ?? "")
         update()
     }
     

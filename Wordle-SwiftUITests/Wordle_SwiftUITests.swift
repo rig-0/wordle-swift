@@ -26,8 +26,12 @@ final class Wordle_SwiftUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        app.otherElements.element(matching: .other, identifier: "Key_A").tap()
+        app.otherElements.element(matching: .other, identifier: "Key_B").tap()
+        app.otherElements.element(matching: .other, identifier: "Key_C").tap()
+        app.otherElements.element(matching: .other, identifier: "Key_D").tap()
+        app.otherElements.element(matching: .other, identifier: "Key_E").tap()
     }
 
     func testLaunchPerformance() throws {
