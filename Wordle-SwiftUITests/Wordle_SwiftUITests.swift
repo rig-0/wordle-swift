@@ -112,8 +112,6 @@ final class Wordle_SwiftUITests: XCTestCase {
         element(key: .E).tap()
         element(key: .ENTER).tap()
         
-        Thread.sleep(forTimeInterval: 1)
-        
         // Wait for Magnificent toast to appear
         let expectation = expectation(
             for: NSPredicate(format: "exists == true"),
