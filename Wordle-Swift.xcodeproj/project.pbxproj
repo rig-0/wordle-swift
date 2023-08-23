@@ -26,7 +26,7 @@
 		C727766A2A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf in Resources */ = {isa = PBXBuildFile; fileRef = C72776692A8C488200BA1ED4 /* KarnakPro-CondensedBlack.otf */; };
 		C78018712A870E0A00E59E0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018702A870E0A00E59E0D /* AppDelegate.swift */; };
 		C78018732A870E0A00E59E0D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018722A870E0A00E59E0D /* SceneDelegate.swift */; };
-		C78018752A870E0A00E59E0D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018742A870E0A00E59E0D /* ViewController.swift */; };
+		C78018752A870E0A00E59E0D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78018742A870E0A00E59E0D /* GameViewController.swift */; };
 		C78018782A870E0A00E59E0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C78018762A870E0A00E59E0D /* Main.storyboard */; };
 		C780187A2A870E0B00E59E0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C78018792A870E0B00E59E0D /* Assets.xcassets */; };
 		C780187D2A870E0B00E59E0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C780187B2A870E0B00E59E0D /* LaunchScreen.storyboard */; };
@@ -80,7 +80,7 @@
 		C780186D2A870E0A00E59E0D /* Wordle-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wordle-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C78018702A870E0A00E59E0D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C78018722A870E0A00E59E0D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C78018742A870E0A00E59E0D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C78018742A870E0A00E59E0D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		C78018772A870E0A00E59E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C78018792A870E0B00E59E0D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C780187C2A870E0B00E59E0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -128,6 +128,7 @@
 			children = (
 				C72776502A88382F00BA1ED4 /* Extensions */,
 				C72776422A8714E600BA1ED4 /* Models */,
+				C7B571F12A95CD39003FB283 /* ViewControllers */,
 				C7F9FE292A8EF1CC00B08E00 /* ViewModels */,
 				C727764B2A8731C300BA1ED4 /* Views */,
 			);
@@ -231,7 +232,6 @@
 				C72776672A8C488200BA1ED4 /* Resources */,
 				C78018722A870E0A00E59E0D /* SceneDelegate.swift */,
 				C72776412A87140B00BA1ED4 /* Source */,
-				C78018742A870E0A00E59E0D /* ViewController.swift */,
 			);
 			path = "Wordle-Swift";
 			sourceTree = "<group>";
@@ -251,6 +251,14 @@
 				C78018932A870E0B00E59E0D /* Wordle_SwiftUITestsLaunchTests.swift */,
 			);
 			path = "Wordle-SwiftUITests";
+			sourceTree = "<group>";
+		};
+		C7B571F12A95CD39003FB283 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C78018742A870E0A00E59E0D /* GameViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C7F9FE292A8EF1CC00B08E00 /* ViewModels */ = {
@@ -403,7 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C78018752A870E0A00E59E0D /* ViewController.swift in Sources */,
+				C78018752A870E0A00E59E0D /* GameViewController.swift in Sources */,
 				C7CCB1E42A8C572E0088638D /* HeaderView.swift in Sources */,
 				C72776442A8714F900BA1ED4 /* Key.swift in Sources */,
 				C727765C2A89E70F00BA1ED4 /* GameState.swift in Sources */,
